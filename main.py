@@ -27,7 +27,7 @@ class BotManager:
             logger.info(f"🚀 Starting {bot_name}...")
             
             process = subprocess.Popen(
-    [sys.executable, bot_file]
+                [sys.executable, bot_file]
             )
             
             self.bot_processes[bot_name] = process
