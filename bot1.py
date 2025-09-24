@@ -414,7 +414,8 @@ async def handle_admin_message(update: Update, context):
         logger.error(f"Erreur handle_admin_message: {e}")
 
 # Fonction pour garder le bot actif sur Render
-async def keep_alive():
+async def keep_alive(context):
+    logger.info("Bot is alive...")
     while True:
         await asyncio.sleep(300)  # 5 minutes
         logger.info("Bot is alive...")
