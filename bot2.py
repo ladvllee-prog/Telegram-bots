@@ -8,7 +8,11 @@ from telegram import Update, InlineKeyboardButton, InlineKeyboardMarkup
 from telegram.ext import Application, CommandHandler, CallbackQueryHandler, ChatJoinRequestHandler, MessageHandler, filters
 
 # Configuration
-TOKEN_BOT2 = "7217167404:AAHomaCkTrXd3ZrjqW9Q_3EDcxKHccyKzw0"
+import os
+TOKEN_BOT2 = os.getenv("BOT2_TOKEN")
+if not TOKEN_BOT2:
+    raise RuntimeError("BOT2_TOKEN not set in environment")
+
 LINKTREE_URL = "https://linktr.ee/Forfreeleaks"
 PREMIUM_GROUP = "https://t.me/+XJTRENbFij4xN2Zk"
 EXCLUSIVE_GROUP_ID = None
