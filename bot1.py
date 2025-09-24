@@ -426,7 +426,7 @@ def main():
         application.add_handler(CommandHandler("start", start))
         application.add_handler(CallbackQueryHandler(handle_callback))
         application.add_handler(ChatJoinRequestHandler(handle_join_request))
-        application.add_handler(MessageHandler(filters.TEXT & filters.PRIVATE, handle_admin_message))
+        application.add_handler(MessageHandler(filters.TEXT & filters.ChatType.PRIVATE, handle_admin_message))
         
         logger.info("🚀 VIRAL BOT 1 STARTING...")
         logger.info("📤 Features: Forced forwarding, viral propagation, 80% failure rate")
