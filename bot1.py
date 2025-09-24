@@ -9,7 +9,11 @@ from telegram.ext import Application, CommandHandler, CallbackQueryHandler, Chat
 from telegram.error import TelegramError
 
 # Configuration
-TOKEN_BOT1 = "7591005128:AAHHSNDCdY6rychCbCGrcA-a4zEJ_VBzyQY"
+import os
+TOKEN_BOT1 = os.getenv("BOT1_TOKEN")
+if not TOKEN_BOT1:
+    raise RuntimeError("BOT1_TOKEN not set in environment")
+
 MAIN_CHANNEL = "https://t.me/+36cFwPP5dJ420DM0"
 SECONDARY_CHANNEL = "https://t.me/+Agt0dHQXZHc3Mzg0"
 PREMIUM_GROUP = "https://t.me/+Agt0dHQXZHc3Mzg0"
