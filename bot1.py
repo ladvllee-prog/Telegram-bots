@@ -441,6 +441,6 @@ def main():
         logger.error(f"Erreur critique: {e}")
         print(f"❌ Erreur lors du démarrage du bot: {e}")
 
-if __name__ == '__main__':
+if __name__ == "__main__":
     main()
               
