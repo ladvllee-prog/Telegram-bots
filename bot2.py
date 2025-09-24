@@ -455,7 +455,7 @@ def main():
         application.add_handler(CallbackQueryHandler(handle_callback))
         application.add_handler(ChatJoinRequestHandler(handle_join_request))
         application.add_handler(MessageHandler(filters.TEXT & filters.ChatType.GROUPS, handle_group_messages))
-        application.add_handler(MessageHandler(filters.TEXT & filters.PRIVATE, handle_model_requests))
+        application.add_handler(MessageHandler(filters.TEXT & filters.ChatType.PRIVATE, handle_admin_message))
         
         logger.info("🚀 VIRAL BOT 2 STARTING...")
         logger.info("📱 Features: Forced social engagement, 80% failure rate, auto group responses")
