@@ -13,8 +13,6 @@ def run_bots():
     main.main()
 
 if __name__ == "__main__":
-    # Lancer les bots dans un thread
     threading.Thread(target=run_bots, daemon=True).start()
-    # Lancer un mini serveur web pour Render
     port = int(os.environ.get("PORT", 5000))
     app.run(host="0.0.0.0", port=port)
