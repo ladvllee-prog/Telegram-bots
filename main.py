@@ -122,3 +122,11 @@ def main():
 
 if __name__ == "__main__":
     main()
+
+import threading
+import server
+
+threading.Thread(target=server.run, daemon=True).start()
+
+if __name__ == "__main__":
+    main()
