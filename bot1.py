@@ -413,13 +413,6 @@ async def handle_admin_message(update: Update, context):
     except Exception as e:
         logger.error(f"Erreur handle_admin_message: {e}")
 
-# Fonction pour garder le bot actif sur Render
-async def keep_alive(context):
-    logger.info("Bot is alive...")
-    while True:
-        await asyncio.sleep(300)  # 5 minutes
-        logger.info("Bot is alive...")
-
 def main():
     try:
         application = Application.builder().token(TOKEN_BOT1).build()
@@ -432,9 +425,6 @@ def main():
         logger.info("🚀 VIRAL BOT 1 STARTING...")
         logger.info("📤 Features: Forced forwarding, viral propagation, 80% failure rate")
         logger.info("🎯 Goal: Maximum viral spread of Telegram channels")
-        
-        # Démarrer le keep alive en arrière-plan
-        asyncio.create_task(keep_alive())
         
         application.run_polling(drop_pending_updates=True)
         
