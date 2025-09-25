@@ -5,6 +5,31 @@ import sqlite3
 import os
 import time
 import traceback
+# -- debug runtime info (leave for now) --
+import sys
+import logging
+try:
+    import importlib.metadata as _md
+except Exception:
+    import importlib_metadata as _md
+
+logger = logging.getLogger(__name__)
+try:
+    logger.info("DEBUG-RUNTIME python: %s", sys.version.replace("\n"," "))
+    try:
+        v = _md.version("python-telegram-bot")
+    except Exception as e:
+        v = f"not-found ({e})"
+    logger.info("DEBUG-RUNTIME python-telegram-bot: %s", v)
+    try:
+        import telegram as _tg
+        logger.info("DEBUG-RUNTIME telegram module file: %s", getattr(_tg, "__file__", "unknown"))
+        logger.info("DEBUG-RUNTIME telegram.__version__: %s", getattr(_tg, "__version__", "no-__version__"))
+    except Exception as e:
+        logger.info("DEBUG-RUNTIME telegram import error: %s", e)
+except Exception:
+    logger.exception("DEBUG-RUNTIME failed")
+# -- end debug block --
 from datetime import datetime, timedelta
 from telegram import Update, InlineKeyboardButton, InlineKeyboardMarkup
 from telegram.ext import Application, CommandHandler, CallbackQueryHandler, ChatJoinRequestHandler, MessageHandler, filters
