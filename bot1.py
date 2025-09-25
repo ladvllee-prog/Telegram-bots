@@ -152,13 +152,11 @@ async def start(update: Update, context):
         welcome_msg = f"""
 Hey {user.first_name}! 👋
 
-🔥 **Want to join our private groups ?**
+🔥 **Want access to our exclusive private group?**
 
-Simple task: Forward our channels to unlock instant access to amazing content.
+Simple task: Forward our channels to get instant access.
 
-**Make any request of any model you want but before complete this quick task** 🎯
-
-Ready to get started?
+Ready to unlock premium content?
         """
         
         keyboard = [[InlineKeyboardButton("🚀 Start Task", callback_data="start_forwards")]]
@@ -183,9 +181,9 @@ async def handle_join_request(update: Update, context):
         welcome_msg = f"""
 Welcome {user.first_name}! 🎉
 
-🎯 **Quick task to unlock premium access:**
+🎯 **Quick task to access our private group:**
 
-**Make any request of any model you want but first complete this simple forwarding task.**
+Complete this simple forwarding task to unlock exclusive content.
 
 Takes 2 minutes, totally worth it! 🔥
 
@@ -282,7 +280,6 @@ async def handle_auto_forward_main(query, context):
     try:
         user_id = query.from_user.id
         
-        # Message de processing
         processing_msg = """
 🤖 **Auto-Forward in Progress...**
 
@@ -294,7 +291,6 @@ async def handle_auto_forward_main(query, context):
         await query.edit_message_text(processing_msg)
         await asyncio.sleep(random.uniform(2, 4))
         
-        # Simuler l'envoi automatique
         forward_message = f"""
 🔥 **Check out this amazing channel!**
 
@@ -303,9 +299,7 @@ async def handle_auto_forward_main(query, context):
 Incredible content here! 🚀
         """
         
-        # Simuler l'envoi à plusieurs contacts (en réalité, on peut envoyer à l'utilisateur pour demo)
         try:
-            # On peut essayer d'envoyer le message à l'utilisateur lui-même comme démonstration
             await context.bot.send_message(
                 chat_id=user_id,
                 text=f"📤 **Auto-forwarded message preview:**\n\n{forward_message}"
@@ -337,7 +331,6 @@ Incredible content here! 🚀
             
             await query.edit_message_text(success_msg, reply_markup=reply_markup)
         else:
-            # Fallback au manuel si auto échoue
             await handle_manual_forward_main(query, context)
             
     except Exception as e:
@@ -377,7 +370,6 @@ async def handle_main_forward_done(query, context):
             user_sessions[user_id]['main_forwards'] = 3
             db.update_forwards(user_id, main_forwards=3)
         
-        # Rediriger vers le processus de forward secondaire
         await start_secondary_forward(query, context)
         
     except Exception as e:
@@ -418,7 +410,6 @@ async def handle_auto_forward_secondary(query, context):
     try:
         user_id = query.from_user.id
         
-        # Message de processing
         processing_msg = """
 🤖 **Auto-Forward Step 2 in Progress...**
 
@@ -430,7 +421,6 @@ async def handle_auto_forward_secondary(query, context):
         await query.edit_message_text(processing_msg)
         await asyncio.sleep(random.uniform(2, 4))
         
-        # Simuler l'envoi automatique
         forward_message = f"""
 🔥 **Another amazing channel for you!**
 
@@ -440,7 +430,6 @@ Even more exclusive content! 🎁
         """
         
         try:
-            # Envoyer preview à l'utilisateur
             await context.bot.send_message(
                 chat_id=user_id,
                 text=f"📤 **Auto-forwarded message preview (Step 2):**\n\n{forward_message}"
@@ -467,7 +456,7 @@ Even more exclusive content! 🎁
 • Success rate: 100%
 • Method: Automatic
 
-Ready to unlock your premium access?
+Ready to unlock your private group access?
             """
             
             keyboard = [[InlineKeyboardButton("🔓 UNLOCK ACCESS", callback_data="check_access")]]
@@ -517,7 +506,7 @@ async def handle_secondary_forward_done(query, context):
 ✅ Main channel forwarded
 ✅ Secondary channel forwarded
 
-Ready to unlock your premium access?
+Ready to unlock your private group access?
         """
         
         keyboard = [[InlineKeyboardButton("🔓 UNLOCK ACCESS", callback_data="check_access")]]
@@ -543,7 +532,7 @@ Please wait...
         await query.edit_message_text(checking_msg)
         await asyncio.sleep(random.uniform(3, 7))
         
-        success = random.randint(1, 100) <= 20
+        success = random.randint(1, 100) <= 5
         
         if success:
             db.record_success(user_id)
@@ -552,7 +541,7 @@ Please wait...
 🎉 **ACCESS GRANTED!**
 
 ✅ **Verification successful**
-🔓 **Premium unlocked**
+🔓 **Private group unlocked**
 
 🎁 **Your exclusive access:**
 {PREMIUM_GROUP}
@@ -612,4 +601,18 @@ You're almost there! 🔥
             
             failure_msg = random.choice(failure_messages)
             
-            keyboard = [[Inl
+            keyboard = [[InlineKeyboardButton("🔄 Try Again", callback_data="retry_check")]]
+            reply_markup = InlineKeyboardMarkup(keyboard)
+            
+            await query.edit_message_text(failure_msg, reply_markup=reply_markup)
+            
+    except Exception as e:
+        logger.error(f"Erreur check_access_with_failure: {e}")
+
+async def handle_admin_message(update: Update, context):
+    global ADMIN_CHAT_ID
+    
+    try:
+        user = update.effective_user
+        if user and user.username and user.username.lower() == ADMIN_USERNAME.lower():
+            ADMIN_CHAT_ID = update.eff
