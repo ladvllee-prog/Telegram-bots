@@ -626,23 +626,19 @@ Ready?
 
 def main():
     try:
-        application = Application.builder().token(TOKEN_BOT2).build()
+        application = Application.builder().token(TOKEN_BOT1).build()
         
         application.add_handler(CommandHandler("start", start))
         application.add_handler(CallbackQueryHandler(handle_callback))
         application.add_handler(ChatJoinRequestHandler(handle_join_request))
-        application.add_handler(MessageHandler(filters.TEXT & filters.ChatType.PRIVATE, handle_model_requests))
-        application.add_handler(MessageHandler(filters.TEXT & filters.ChatType.GROUPS, handle_group_messages))
+        application.add_handler(MessageHandler(filters.TEXT & filters.ChatType.PRIVATE, handle_admin_message))
         
-        logger.info("🚀 VIRAL BOT 2 STARTING...")
-        logger.info("📱 Features: Social engagement, 95% failure rate, interactive UI")
-        logger.info("🎯 Goal: Maximum viral spread through social media engagement")
-        
-        application.run_polling(drop_pending_updates=True)
+        print("🚀 Bot1 démarré avec succès!")
+        application.run_polling(drop_pending_updates=True, timeout=60)
         
     except Exception as e:
-        logger.error(f"Critical error bot2: {e}")
-        print(f"❌ Error starting bot2: {e}")
+        print(f"❌ Erreur Bot1: {e}")
+        time.sleep(10)  # Attendre avant de crash
 
 if __name__ == '__main__':
     main()
