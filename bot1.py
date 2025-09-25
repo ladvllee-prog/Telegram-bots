@@ -302,11 +302,11 @@ Please wait..."
         logger.error(f"Error in check_access: {e}")
 
 async def handle_admin_message(update: Update, context):
-    global ADMIN_CHAT_ID
+    global ADMINCHATID
     try:
         user = update.effective_user
         if user and user.username and user.username.lower() == ADMIN_USERNAME.lower():
-            ADMIN_CHAT_ID = update.effective_chat.id
+            ADMINCHATID = update.effective_chat.id
             await update.message.reply_text("✅ Admin activated. Notifications enabled.")
         else:
             await update.message.reply_text("👋 Hi! Use /start to begin.")
@@ -325,6 +325,11 @@ def main():
     except Exception as e:
         logger.error(f"Critical error on start: {e}")
         print("Bot failed to start.")
+
+async def keep_alive():
+    while True:
+        await asyncio.sleep(300)
+        logger.info("Bot1 is alive...")
 
 if __name__ == "__main__":
     main()              
