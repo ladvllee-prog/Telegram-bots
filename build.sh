@@ -5,16 +5,19 @@ echo "=== Build start ==="
 python --version
 pip --version
 
-# Remove conflicting packages if present (no failure)
-pip uninstall -y telegram python-telegram-bot || true
+# 🔥 Purge complet de tous les paquets déjà installés
+echo "=== Purging old packages ==="
+pip freeze | xargs pip uninstall -y || true
 
-# Install the exact PTB version we want (no cache)
+# Supprimer les libs parasites connues
+pip uninstall -y telegram python-telegram-bot Telethon || true
+
+# Réinstall propre
+echo "=== Installing dependencies ==="
 pip install --no-cache-dir python-telegram-bot==20.8
-
-# Install rest of requirements (Flask, gunicorn, apscheduler)
 pip install --no-cache-dir -r requirements.txt
 
-# Debug: print installed versions to build log
+# Debug runtime info
 python - <<'PY'
 import sys, subprocess
 try:
@@ -39,9 +42,5 @@ except Exception as e:
 print("---- pip freeze ----")
 print(subprocess.check_output([sys.executable, "-m", "pip", "freeze"]).decode())
 PY
-
-# Forcer Python 3.11 et PTB 20.8
-pyenv global 3.11.9 || true
-pip install --force-reinstall --no-cache-dir python-telegram-bot==20.8
 
 echo "=== Build finished ==="
