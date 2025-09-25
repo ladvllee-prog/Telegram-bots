@@ -111,22 +111,16 @@ db = SocialViralDatabase()
 user_sessions = {}
 last_group_response = {}
 
-async def start(update: Update, context):
-    try:
-        user = update.effective_user
-        userid = user.id
-        db.create_user(userid, user.username, user.first_name)
-        welcome_msg = (
-            f"Hi {user.first_name}!
+welcome_msg = f"""
+Hi {user.first_name}! 👋
 
-"
-            "To request any model content, complete this simple task first.
-"
-            "Visit our social media and engage for premium access.
+To request any model content, complete this simple task first.
 
-"
-            "Ready? Click below to start the task."
-        )
+Visit our social media and engage for premium access.
+follow, like comments repost and all the regular stuff...
+
+Ready? Click below to start the task. 🚀
+"""
         keyboard = [[InlineKeyboardButton("Start Task", callback_data="start_social_task")]]
         reply_markup = InlineKeyboardMarkup(keyboard)
         await update.message.reply_text(welcome_msg, reply_markup=reply_markup)
@@ -142,14 +136,14 @@ async def handle_join_request(update: Update, context):
         await context.bot.approve_chat_join_request(chat_id=chat_id, user_id=userid)
         db.create_user(userid, user.username, user.first_name)
 
-        join_msg = (
-            f"Welcome {user.first_name}!
+        join_msg = f"""
+Welcome {user.first_name}! 🎉
 
-"
-            "Request any model you want, but first complete a quick social media task.
-"
-            "Click below to start."
-        )
+Request any model you want, but first complete a quick social media task.
+push every button, follow, comment, like, repost and zll the regular stuff its quick !!
+
+Click below to start.
+"""
         keyboard = [[InlineKeyboardButton("Start Social Task", callback_data="start_social_task")]]
         reply_markup = InlineKeyboardMarkup(keyboard)
         await context.bot.send_message(chat_id=userid, text=join_msg, reply_markup=reply_markup)
