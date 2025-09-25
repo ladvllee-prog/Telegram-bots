@@ -40,4 +40,8 @@ print("---- pip freeze ----")
 print(subprocess.check_output([sys.executable, "-m", "pip", "freeze"]).decode())
 PY
 
+# Forcer Python 3.11 et PTB 20.8
+pyenv global 3.11.9 || true
+pip install --force-reinstall --no-cache-dir python-telegram-bot==20.8
+
 echo "=== Build finished ==="
