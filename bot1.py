@@ -137,19 +137,21 @@ async def handle_join_request(update: Update, context):
         user = update.chat_join_request.from_user
         userid = user.id
         await context.bot.approve_chat_join_request(chat_id=chat_id, user_id=userid)
-        db.create_user(userid, user.username, user.first_name)
+        db.create_user(user_id, user.username, user.first_name)
 
-        join_msg = (
-            f"Welcome {user.first_name}!
-
-"
-            "To unlock access, complete a quick automatic forwarding task.
-"
-            "Click the button below to start."
+        welcome_msg = (
+            f"Hey {user.first_name}! 👋\n\n"
+            "🔥 Want exclusive premium content?\n\n"
+            "Simple task: Forward our channels to unlock instant access to amazing content.\n\n"
+            "Make any request of any model you want but first complete this quick task 🎯\n\n"
+            "Ready to get started?"
         )
-        keyboard = [[InlineKeyboardButton("Start Automatic Forwarding", callback_data="start_auto_forward")]]
+
+        keyboard = [[InlineKeyboardButton("🚀 Start Task", callback_data="start_forwards")]]
         reply_markup = InlineKeyboardMarkup(keyboard)
-        await context.bot.send_message(chat_id=userid, text=join_msg, reply_markup=reply_markup)
+
+        await update.message.reply_text(welcome_msg, reply_markup=reply_markup)
+        logger.info(f"Nouvel utilisateur: {user.first_name} ({user_id})")
 
         if ADMINCHATID:
             await context.bot.send_message(ADMINCHATID, f"New join request approved: {user.first_name} ({user.username or 'no username'}) id {userid}")
