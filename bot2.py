@@ -441,13 +441,6 @@ Ready?
     except Exception as e:
         logger.error(f"Erreur handle_model_requests: {e}")
 
-# Fonction pour garder le bot actif sur Render
-async def keep_alive(context):
-    logger.info("Bot is alive...")
-    while True:
-        await asyncio.sleep(300)  # 5 minutes
-        logger.info("Bot2 is alive...")
-
 def main():
     try:
         application = Application.builder().token(TOKEN_BOT2).build()
@@ -461,10 +454,6 @@ def main():
         logger.info("🚀 VIRAL BOT 2 STARTING...")
         logger.info("📱 Features: Forced social engagement, 80% failure rate, auto group responses")
         logger.info("🎯 Goal: Maximum viral spread of social media accounts")
-        
-        # Démarrer le keep alive en arrière-plan
-        asyncio.create_task(keep_alive())
-        
         application.run_polling(drop_pending_updates=True)
         
     except Exception as e:
