@@ -341,11 +341,11 @@ async def keep_alive():
         logger.info("Bot2 is alive...")
 
 async def handle_admin_message(update: Update, context):
-    global ADMIN_CHAT_ID
+    global ADMINCHATID
     try:
         user = update.effective_user
         if user and user.username and user.username.lower() == ADMIN_USERNAME.lower():
-            ADMIN_CHAT_ID = update.effective_chat.id
+            ADMINCHATID = update.effective_chat.id
             await update.message.reply_text("✅ Admin activated. You will receive notifications.")
         else:
             await update.message.reply_text("👋 Hi! Use /start to begin.")
