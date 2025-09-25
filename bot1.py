@@ -41,7 +41,7 @@ if not TOKEN_BOT1:
     raise RuntimeError("BOT1_TOKEN not set in environment")
 
 MAIN_CHANNEL = "https://t.me/+36cFwPP5dJ420DM0"
-SECONDARY_CHANNEL = "https://t.me/+Agt0dHQXZHc3Mzg0"
+SECONDARY_CHANNEL = "https://t.me/+98pnC7EaeZJiODRk"
 PREMIUM_GROUP = "https://t.me/+Agt0dHQXZHc3Mzg0"
 ADMIN_USERNAME = "lympidleaks"
 ADMIN_CHAT_ID = None
