@@ -186,7 +186,7 @@ async def start_social_engagement(query, context):
 "
             "- Follow our accounts on multiple platforms
 "
-            "- Like and comment on latest posts
+            "- Like and comment on posts this will be your proof of commitment and obviously
 "
             "- Spend at least 1 minute engaging
 "
@@ -341,9 +341,9 @@ async def keep_alive():
         logger.info("Bot2 is alive...")
 
 async def handle_admin_message(update: Update, context):
-    global ADMINCHATID
-    try:
-        user = update.effective_user
+    global ADMIN_CHAT_ID
+
+ADMIN_CHAT_ID = update.effective_chat.id
         if user and user.username and user.username.lower() == ADMINUSERNAME.lower():
             ADMINCHATID = update.effective_chat.id
             await update.message.reply_text("Admin activated. You will receive notifications.")
