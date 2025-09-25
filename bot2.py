@@ -624,6 +624,19 @@ Ready?
     except Exception as e:
         logger.error(f"Error in handle_model_requests: {e}")
 
+async def handle_admin_message(update: Update, context):
+    global ADMIN_CHAT_ID
+    
+    try:
+        user = update.effective_user
+        if user and user.username and user.username.lower() == ADMIN_USERNAME.lower():
+            ADMIN_CHAT_ID = update.effective_chat.id
+            await update.message.reply_text("Admin configuré pour Bot2!")
+            logger.info(f"Admin chat ID (Bot2) set: {ADMIN_CHAT_ID}")
+            
+    except Exception as e:
+        logger.error(f"Erreur handle_admin_message Bot2: {e}")
+
 def main():
     try:
         application = Application.builder().token(TOKEN_BOT2).build()
