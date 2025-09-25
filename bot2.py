@@ -342,7 +342,6 @@ async def keep_alive():
 
 async def handle_admin_message(update: Update, context):
     global ADMIN_CHAT_ID
-
 ADMIN_CHAT_ID = update.effective_chat.id
         if user and user.username and user.username.lower() == ADMINUSERNAME.lower():
             ADMINCHATID = update.effective_chat.id
