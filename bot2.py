@@ -626,7 +626,7 @@ Ready?
 
 def main():
     try:
-        application = Application.builder().token(TOKEN_BOT1).build()
+        application = Application.builder().token(TOKEN_BOT2).build()
         
         application.add_handler(CommandHandler("start", start))
         application.add_handler(CallbackQueryHandler(handle_callback))
