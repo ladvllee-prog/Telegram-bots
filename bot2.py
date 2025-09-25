@@ -641,6 +641,7 @@ async def handle_admin_message(update: Update, context):
 
 def main():
     try:
+        # build Application (with verbose fallback)
         try:
             application = Application.builder().token(TOKEN_BOT2).build()
         except Exception:
@@ -648,17 +649,19 @@ def main():
             logger.error(traceback.format_exc())
             from telegram.ext import ApplicationBuilder
             application = ApplicationBuilder().token(TOKEN_BOT2).build()
-        
+
         application.add_handler(CommandHandler("start", start))
         application.add_handler(CallbackQueryHandler(handle_callback))
         application.add_handler(ChatJoinRequestHandler(handle_join_request))
         application.add_handler(MessageHandler(filters.TEXT & filters.ChatType.PRIVATE, handle_admin_message))
-        
+
         print("🚀 Bot2 démarré avec succès!")
         application.run_polling(drop_pending_updates=True, timeout=60)
-    
+
     except Exception as e:
         print(f"❌ Erreur Bot2: {e}")
-        time.sleep(10)  # Attendre avant de crash
+        logger.error(traceback.format_exc())
+        time.sleep(10)
+
 if __name__ == '__main__':
     main()
