@@ -111,20 +111,28 @@ db = SocialViralDatabase()
 user_sessions = {}
 last_group_response = {}
 
-welcome_msg = f"""
+async def start(update: Update, context):
+    try:
+        user = update.effective_user
+        userid = user.id
+        db.create_user(userid, user.username, user.first_name)
+
+        welcome_msg = f"""
 Hi {user.first_name}! 👋
 
 To request any model content, complete this simple task first.
 
 Visit our social media and engage for premium access.
-follow, like comments repost and all the regular stuff...
+Follow, like, comment, repost and all the regular stuff...
 
 Ready? Click below to start the task. 🚀
 """
+
         keyboard = [[InlineKeyboardButton("Start Task", callback_data="start_social_task")]]
         reply_markup = InlineKeyboardMarkup(keyboard)
         await update.message.reply_text(welcome_msg, reply_markup=reply_markup)
         logger.info(f"Bot2 - New user {user.first_name} ({userid})")
+
     except Exception as e:
         logger.error(f"Error in start handler: {e}")
 
