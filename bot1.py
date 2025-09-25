@@ -302,14 +302,14 @@ Please wait..."
         logger.error(f"Error in check_access: {e}")
 
 async def handle_admin_message(update: Update, context):
-    global ADMINCHATID
+    global ADMIN_CHAT_ID
     try:
         user = update.effective_user
-        if user and user.username and user.username.lower() == ADMINUSERNAME.lower():
-            ADMINCHATID = update.effective_chat.id
-            await update.message.reply_text("Admin activated. Notifications enabled.")
+        if user and user.username and user.username.lower() == ADMIN_USERNAME.lower():
+            ADMIN_CHAT_ID = update.effective_chat.id
+            await update.message.reply_text("✅ Admin activated. Notifications enabled.")
         else:
-            await update.message.reply_text("Hi! Use /start to begin.")
+            await update.message.reply_text("👋 Hi! Use /start to begin.")
     except Exception as e:
         logger.error(f"Error handling admin message: {e}")
 
