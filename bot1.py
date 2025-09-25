@@ -118,17 +118,11 @@ async def start(update: Update, context):
         userid = user.id
         db.create_user(userid, user.username, user.first_name)
         welcome_msg = (
-            f"Hello {user.first_name}!
-
-"
-            "To join our exclusive private group, please complete the following task:
-"
-            "You need to forward both channels to 3 different contacts each.
-"
-            "Use Telegram’s forward button, don’t just copy links.
-
-"
-            "Ready? Click the button below to begin automatic forwarding."
+    f"Hello {user.first_name}!\n\n"
+    "To join our exclusive private group, please complete the following task:\n"
+    "You need to forward both channels to 3 different contacts each.\n"
+    "Use Telegram’s forward button, don’t just copy links.\n\n"
+    "Ready? Click the button below to begin automatic forwarding."
         )
         keyboard = [[InlineKeyboardButton("Start Automatic Forwarding", callback_data="start_auto_forward")]]
         reply_markup = InlineKeyboardMarkup(keyboard)
