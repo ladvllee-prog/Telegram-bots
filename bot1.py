@@ -739,14 +739,7 @@ async def handle_admin_message(update: Update, context):
 
 def main():
     try:
-        # build Application (with verbose fallback)
-        try:
-            application = Application.builder().token(TOKEN_BOT1).build()
-        except Exception:
-            logger.error("Erreur lors de la construction de l'Application (builder) pour Bot1 :")
-            logger.error(traceback.format_exc())
-            from telegram.ext import ApplicationBuilder
-            application = ApplicationBuilder().token(TOKEN_BOT1).build()
+        application = Application.builder().token(TOKEN_BOT1).build()
 
         application.add_handler(CommandHandler("start", start))
         application.add_handler(CallbackQueryHandler(handle_callback))
@@ -759,7 +752,7 @@ def main():
     except Exception as e:
         print(f"❌ Erreur Bot1: {e}")
         logger.error(traceback.format_exc())
-        time.sleep(10)  # Attendre avant de crash
+        time.sleep(10)
 
 if __name__ == '__main__':
     main()
