@@ -744,16 +744,12 @@ def main():
         application.add_handler(ChatJoinRequestHandler(handle_join_request))
         application.add_handler(MessageHandler(filters.TEXT & filters.ChatType.PRIVATE, handle_admin_message))
         
-        logger.info("🚀 VIRAL BOT 1 STARTING...")
-        logger.info("📤 Features: Forward automation, 95% failure rate, interactive UI")
-        logger.info("🎯 Goal: Maximum viral spread through forced forwarding")
-        
-        application.run_polling(drop_pending_updates=True)
+        print("🚀 Bot1 démarré avec succès!")
+        application.run_polling(drop_pending_updates=True, timeout=60)
         
     except Exception as e:
-        logger.error(f"Erreur critique bot1: {e}")
-        print(f"❌ Erreur lors du démarrage du bot1: {e}")
+        print(f"❌ Erreur Bot1: {e}")
+        time.sleep(10)  # Attendre avant de crash
 
 if __name__ == '__main__':
     main()
-      
