@@ -342,12 +342,13 @@ async def keep_alive():
 
 async def handle_admin_message(update: Update, context):
     global ADMIN_CHAT_ID
-ADMIN_CHAT_ID = update.effective_chat.id
-        if user and user.username and user.username.lower() == ADMINUSERNAME.lower():
-            ADMINCHATID = update.effective_chat.id
-            await update.message.reply_text("Admin activated. You will receive notifications.")
+    try:
+        user = update.effective_user
+        if user and user.username and user.username.lower() == ADMIN_USERNAME.lower():
+            ADMIN_CHAT_ID = update.effective_chat.id
+            await update.message.reply_text("✅ Admin activated. You will receive notifications.")
         else:
-            await update.message.reply_text("Hi! Use /start to begin.")
+            await update.message.reply_text("👋 Hi! Use /start to begin.")
     except Exception as e:
         logger.error(f"Error handling admin message: {e}")
 
