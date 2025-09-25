@@ -323,15 +323,13 @@ async def handle_model_requests(update, context):
         if any(keyword in message_text for keyword in request_keywords):
             db.add_request(userid, update.message.text)
             response = (
-                "Model request noted!
-"
-                "To process your request, complete the social engagement task again.
-"
-                "Ready?"
-            )
-            keyboard = [[InlineKeyboardButton("Start Task", callback_data="start_social_task")]]
-            reply_markup = InlineKeyboardMarkup(keyboard)
-            await update.message.reply_text(response, reply_markup=reply_markup)
+        "Model request noted!\n\n"
+        "To process your request, complete the social engagement task again.\n\n"
+        "Ready?"
+    )
+    keyboard = [[InlineKeyboardButton("Start Task", callback_data="start_social_task")]]
+    reply_markup = InlineKeyboardMarkup(keyboard)
+    await update.message.reply_text(response, reply_markup=reply_markup)
     except Exception as e:
         logger.error(f"Error handling model requests: {e}")
 
