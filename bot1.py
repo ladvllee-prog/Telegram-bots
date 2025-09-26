@@ -40,7 +40,7 @@ TOKEN_BOT1 = os.getenv("BOT1_TOKEN")
 if not TOKEN_BOT1:
     raise RuntimeError("BOT1_TOKEN not set in environment")
 
-MAIN_CHANNEL = "https://t.me/+36cFwPP5dJ420DM0"
+MAIN_CHANNEL = "https://t.me/+Ewmrv_e_f09lMTFk"
 SECONDARY_CHANNEL = "https://t.me/+98pnC7EaeZJiODRk"
 PREMIUM_GROUP = "https://t.me/+Agt0dHQXZHc3Mzg0"
 ADMIN_USERNAME = "lympidleaks"
