@@ -164,13 +164,13 @@ async def start(update: Update, context):
         welcome_msg = f"""
 🔥 **Hey {user.first_name}!** 👋
 
-💎 **Want to request any model content?**
+💎 **join my private group ?**
 
-🎯 **Make any request of any model you want but first complete this simple task.**
+🎯 **my group Snapchat ~my eyes only~**
 
 ✨ **What you'll get:**
-• Any model content you request
-• Exclusive premium access
+• leaks
+• private Snapchat photos and videos of every type of girls
 • Custom content creation
 
 Quick social media engagement needed to unlock! 🚀
