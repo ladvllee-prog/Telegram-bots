@@ -36,7 +36,7 @@ from telegram.ext import Application, CommandHandler, CallbackQueryHandler, Chat
 from telegram.error import TelegramError
 
 # ✅ Ajoute ceci juste après les imports
-defaults = Defaults(parse_mode="Markdown")
+defaults = Defaults(parse_mode="MarkdownV2")
 
 # Configuration
 TOKEN_BOT1 = os.getenv("BOT1_TOKEN")
@@ -767,10 +767,9 @@ async def handle_admin_message(update: Update, context):
 
 def main():
     try:
-        # Activer Markdown par défaut
-        defaults = Defaults(parse_mode="Markdown")
+        # Activer MarkdownV2 par défaut
+        defaults = Defaults(parse_mode="MarkdownV2")
 
-        # Construire l'application avec les defaults
         application = Application.builder().token(TOKEN_BOT1).defaults(defaults).build()
 
         application.add_handler(CommandHandler("start", start))
