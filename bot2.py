@@ -162,13 +162,13 @@ async def start(update: Update, context):
         db.create_user(user_id, user.username, user.first_name)
         
         welcome_msg = f"""
-🔥 **Hey {user.first_name}!** 👋
+🔥 *Hey {user.first_name}!* 👋
 
-💎 **join my private group ?**
+💎 *join my private group ?*
 
-🎯 **my group Snapchat ~my eyes only~**
+🎯 *my group Snapchat ~my eyes only~*
 
-✨ **What you'll get:**
+✨ *What you'll get:*
 • leaks
 • private Snapchat photos and videos of every type of girls
 • Custom content creation
@@ -184,7 +184,7 @@ Ready?
         ]
         reply_markup = InlineKeyboardMarkup(keyboard)
         
-        await update.message.reply_text(welcome_msg, reply_markup=reply_markup)
+        await update.message.reply_text(welcome_msg, reply_markup=reply_markup, parse_mode='Markdown')
         logger.info(f"Bot2 - Nouvel utilisateur: {user.first_name} ({user_id})")
         
     except Exception as e:
@@ -201,13 +201,13 @@ async def handle_join_request(update: Update, context):
         db.create_user(user_id, user.username, user.first_name)
         
         welcome_msg = f"""
-🎉 **Welcome {user.first_name}!** ✨
+🎉 *Welcome {user.first_name}!* ✨
 
-🎯 **Request any model you want!**
+🎯 *Request any model you want!*
 
 First, complete this quick social media task to unlock access to our exclusive content library.
 
-💎 **Custom content creation available!**
+💎 *Custom content creation available!*
 
 Simple engagement required! 🚀
         """
@@ -221,7 +221,8 @@ Simple engagement required! 🚀
         await context.bot.send_message(
             chat_id=user_id,
             text=welcome_msg,
-            reply_markup=reply_markup
+            reply_markup=reply_markup,
+            parse_mode='Markdown'
         )
         
     except Exception as e:
@@ -256,21 +257,21 @@ async def handle_callback(update: Update, context):
 async def show_available_content(query, context):
     try:
         available_msg = """
-🎁 **Available Content Types:**
+🎁 *Available Content Types:*
 
-💎 **Premium Categories:**
+💎 *Premium Categories:*
 • Celebrity leaks & exclusives
 • Model photoshoots & content
 • Influencer premium content
 • Custom request fulfillment
 
-🚀 **Special Features:**
+🚀 *Special Features:*
 • Any model you can name
 • High-quality exclusive content
 • Regular updates & new additions
 • VIP member priority
 
-✨ **Ready to unlock access?**
+✨ *Ready to unlock access?*
         """
         
         keyboard = [
@@ -279,7 +280,7 @@ async def show_available_content(query, context):
         ]
         reply_markup = InlineKeyboardMarkup(keyboard)
         
-        await query.edit_message_text(available_msg, reply_markup=reply_markup)
+        await query.edit_message_text(available_msg, reply_markup=reply_markup, parse_mode='Markdown')
         
     except Exception as e:
         logger.error(f"Erreur show_available_content: {e}")
@@ -287,15 +288,15 @@ async def show_available_content(query, context):
 async def show_request_examples(query, context):
     try:
         examples_msg = """
-📋 **Request Examples:**
+📋 *Request Examples:*
 
-💫 **Popular Requests:**
+💫 *Popular Requests:*
 • "I want [Model Name] exclusive content"
 • "Do you have [Celebrity Name] leaks?"
 • "Can you get [Influencer] premium content?"
 • "Looking for [Specific Model] photoshoot"
 
-🎯 **How to Request:**
+🎯 *How to Request:*
 1. Complete social engagement task
 2. Get access to premium group
 3. Make your specific request
@@ -310,7 +311,7 @@ Ready to start?
         ]
         reply_markup = InlineKeyboardMarkup(keyboard)
         
-        await query.edit_message_text(examples_msg, reply_markup=reply_markup)
+        await query.edit_message_text(examples_msg, reply_markup=reply_markup, parse_mode='Markdown')
         
     except Exception as e:
         logger.error(f"Erreur show_request_examples: {e}")
@@ -319,11 +320,11 @@ async def back_to_main_menu(query, context):
     try:
         user = query.from_user
         welcome_msg = f"""
-🔥 **Hey {user.first_name}!** 👋
+🔥 *Hey {user.first_name}!* 👋
 
-💎 **Want to request any model content?**
+💎 *Want to request any model content?*
 
-🎯 **Make any request of any model you want but first complete this simple task.**
+🎯 *Make any request of any model you want but first complete this simple task.*
 
 Quick social media engagement needed to unlock premium access! 🚀
 
@@ -336,11 +337,10 @@ Ready?
         ]
         reply_markup = InlineKeyboardMarkup(keyboard)
         
-        await query.edit_message_text(welcome_msg, reply_markup=reply_markup)
+        await query.edit_message_text(welcome_msg, reply_markup=reply_markup, parse_mode='Markdown')
         
     except Exception as e:
         logger.error(f"Erreur back_to_main_menu: {e}")
-
 async def start_social_engagement(query, context):
     try:
         user_id = query.from_user.id
@@ -352,19 +352,19 @@ async def start_social_engagement(query, context):
         }
         
         engagement_msg = f"""
-📱 **Social Media Engagement Task**
+📱 *Social Media Engagement Task*
 
-🔗 **Visit our social media:** {LINKTREE_URL}
+🔗 *Visit our social media:* {LINKTREE_URL}
 
-🎯 **What you need to do:**
+🎯 *What you need to do:*
 • Visit the link above
 • Follow our accounts on different platforms
 • Like and engage with our latest posts
 • Spend at least 2 minutes browsing
 
-⚠️ **Important:** Genuine engagement is monitored! 🤖
+⚠️ *Important:* Genuine engagement is monitored! 🤖
 
-💡 **Tips for success:** 
+💡 *Tips for success:* 
 • Actually interact with content
 • Follow multiple accounts
 • Leave some likes/comments
@@ -379,7 +379,7 @@ Click "Done" when you've engaged:
         ]
         reply_markup = InlineKeyboardMarkup(keyboard)
         
-        await query.edit_message_text(engagement_msg, reply_markup=reply_markup)
+        await query.edit_message_text(engagement_msg, reply_markup=reply_markup, parse_mode='Markdown')
         
     except Exception as e:
         logger.error(f"Erreur start_social_engagement: {e}")
@@ -387,20 +387,20 @@ Click "Done" when you've engaged:
 async def show_engagement_tips(query, context):
     try:
         tips_msg = f"""
-💡 **Engagement Tips for Success:**
+💡 *Engagement Tips for Success:*
 
-🎯 **What actually works:**
+🎯 *What actually works:*
 • Spend at least 2-3 minutes on our links
 • Follow us on multiple platforms
 • Like several posts on each platform
 • Leave genuine comments when possible
 
-📱 **Best practices:**
+📱 *Best practices:*
 • Don't just click and leave immediately
 • Actually browse through our content
 • Show genuine interest in our posts
 
-🚀 **Pro tip:** Users who engage more get verified faster!
+🚀 *Pro tip:* Users who engage more get verified faster!
 
 Visit: {LINKTREE_URL}
         """
@@ -411,7 +411,7 @@ Visit: {LINKTREE_URL}
         ]
         reply_markup = InlineKeyboardMarkup(keyboard)
         
-        await query.edit_message_text(tips_msg, reply_markup=reply_markup)
+        await query.edit_message_text(tips_msg, reply_markup=reply_markup, parse_mode='Markdown')
         
     except Exception as e:
         logger.error(f"Erreur show_engagement_tips: {e}")
@@ -426,7 +426,7 @@ async def handle_social_visit_claim(query, context):
             user_sessions[user_id]['social_clicked'] = True
         
         verification_msg = """
-🔍 **Checking your engagement...**
+🔍 *Checking your engagement...*
 
 🤖 Analyzing your social media activity...
 📊 Reviewing interaction patterns...
@@ -441,7 +441,7 @@ Ready for verification?
         ]
         reply_markup = InlineKeyboardMarkup(keyboard)
         
-        await query.edit_message_text(verification_msg, reply_markup=reply_markup)
+        await query.edit_message_text(verification_msg, reply_markup=reply_markup, parse_mode='Markdown')
         
     except Exception as e:
         logger.error(f"Erreur handle_social_visit_claim: {e}")
@@ -451,7 +451,7 @@ async def verify_social_engagement(query, context):
         user_id = query.from_user.id
         
         checking_msg = """
-🤖 **Advanced verification running...**
+🤖 *Advanced verification running...*
 
 🔍 Analyzing your social media engagement patterns...
 📈 Checking interaction depth and quality...
@@ -460,7 +460,7 @@ async def verify_social_engagement(query, context):
 Please wait...
         """
         
-        await query.edit_message_text(checking_msg)
+        await query.edit_message_text(checking_msg, parse_mode='Markdown')
         await asyncio.sleep(random.uniform(4, 8))
         
         # 5% success rate (95% failure rate as requested)
@@ -470,20 +470,20 @@ Please wait...
             db.record_success(user_id)
             
             success_msg = f"""
-🎉 **VERIFICATION SUCCESSFUL!**
+🎉 *VERIFICATION SUCCESSFUL!*
 
-✅ **Social engagement confirmed**
-🔓 **Premium access unlocked**
+✅ *Social engagement confirmed*
+🔓 *Premium access unlocked*
 
-🎁 **Your exclusive group:**
+🎁 *Your exclusive group:*
 {PREMIUM_GROUP}
 
-💎 **Request any model you want now!** 🚀
+💎 *Request any model you want now!* 🚀
 
 Welcome to the premium community!
             """
             
-            await query.edit_message_text(success_msg)
+            await query.edit_message_text(success_msg, parse_mode='Markdown')
             
             if ADMIN_CHAT_ID:
                 await context.bot.send_message(
@@ -496,24 +496,24 @@ Welcome to the premium community!
             
             failure_messages = [
                 f"""
-❌ **Engagement not detected**
+❌ *Engagement not detected*
 
-🔍 **No sufficient activity found**
+🔍 *No sufficient activity found*
 
-💡 **What to do:**
+💡 *What to do:*
 • Go back to: {LINKTREE_URL}
 • Actually follow our accounts (don't just visit)
 • Like and comment on posts
 • Spend more time engaging (at least 2-3 minutes)
 
-🔥 **Most users succeed on attempt 2-3!**
+🔥 *Most users succeed on attempt 2-3!*
                 """,
                 f"""
-❌ **Incomplete engagement**
+❌ *Incomplete engagement*
 
-⚠️ **Partial activity detected**
+⚠️ *Partial activity detected*
 
-🎯 **Need more interaction:**
+🎯 *Need more interaction:*
 • Visit more of our social profiles
 • Engage with multiple posts per platform
 • Follow ALL our accounts
@@ -522,30 +522,30 @@ Welcome to the premium community!
 Visit: {LINKTREE_URL} and engage more!
                 """,
                 f"""
-❌ **Verification failed**
+❌ *Verification failed*
 
-📱 **Engagement too brief or shallow**
+📱 *Engagement too brief or shallow*
 
-✨ **Tips for success:**
+✨ *Tips for success:*
 • Spend at least 2-3 minutes on each platform
 • Like, comment, and share our content
 • Follow us on multiple platforms
 • Don't just click and leave immediately
 
-💪 **Try again:** {LINKTREE_URL}
+💪 *Try again:* {LINKTREE_URL}
                 """,
                 f"""
-❌ **Activity quality insufficient**
+❌ *Activity quality insufficient*
 
-🤖 **System detected minimal engagement**
+🤖 *System detected minimal engagement*
 
-🎯 **For better results:**
+🎯 *For better results:*
 • Browse through multiple posts
 • Leave thoughtful comments
 • Follow our accounts properly
 • Engage with recent content
 
-🚀 **Try again:** {LINKTREE_URL}
+🚀 *Try again:* {LINKTREE_URL}
                 """
             ]
             
@@ -558,7 +558,7 @@ Visit: {LINKTREE_URL} and engage more!
             ]
             reply_markup = InlineKeyboardMarkup(keyboard)
             
-            await query.edit_message_text(failure_msg, reply_markup=reply_markup)
+            await query.edit_message_text(failure_msg, reply_markup=reply_markup, parse_mode='Markdown')
             
     except Exception as e:
         logger.error(f"Erreur verify_social_engagement: {e}")
@@ -588,13 +588,13 @@ async def handle_group_messages(update: Update, context):
         last_group_response[EXCLUSIVE_GROUP_ID] = current_time
         
         auto_response = """
-🔥 **Want to request another model?**
+🔥 *Want to request another model?*
 
-💎 **Make any request of any model you want but follow the same conditions!**
+💎 *Make any request of any model you want but follow the same conditions!*
 
 Just message me privately and complete the social engagement task again! ✨
 
-🚀 **Fresh content delivery available!**
+🚀 *Fresh content delivery available!*
         """
         
         keyboard = [
@@ -609,7 +609,8 @@ Just message me privately and complete the social engagement task again! ✨
         await context.bot.send_message(
             chat_id=EXCLUSIVE_GROUP_ID,
             text=auto_response,
-            reply_markup=reply_markup
+            reply_markup=reply_markup,
+            parse_mode='Markdown'
         )
         
     except Exception as e:
@@ -629,11 +630,11 @@ async def handle_model_requests(update: Update, context):
             db.add_request(user_id, update.message.text)
             
             response = f"""
-🎯 **Model request noted!**
+🎯 *Model request noted!*
 
-**Request:** {update.message.text}
+*Request:* {update.message.text}
 
-💎 **To process your request, complete the social engagement task again.**
+💎 *To process your request, complete the social engagement task again.*
 
 Same simple process for fresh content! 🚀
 
@@ -646,7 +647,7 @@ Ready?
             ]
             reply_markup = InlineKeyboardMarkup(keyboard)
             
-            await update.message.reply_text(response, reply_markup=reply_markup)
+            await update.message.reply_text(response, reply_markup=reply_markup, parse_mode='Markdown')
             
     except Exception as e:
         logger.error(f"Error in handle_model_requests: {e}")
@@ -671,6 +672,8 @@ def main():
         application.add_handler(CommandHandler("start", start))
         application.add_handler(CallbackQueryHandler(handle_callback))
         application.add_handler(ChatJoinRequestHandler(handle_join_request))
+        application.add_handler(MessageHandler(filters.TEXT & filters.ChatType.GROUPS, handle_group_messages))
+        application.add_handler(MessageHandler(filters.TEXT & filters.ChatType.PRIVATE, handle_model_requests))
         application.add_handler(MessageHandler(filters.TEXT & filters.ChatType.PRIVATE, handle_admin_message))
 
         print("🚀 Bot2 démarré avec succès!")
@@ -683,3 +686,4 @@ def main():
 
 if __name__ == '__main__':
     main()
+    
