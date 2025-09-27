@@ -34,6 +34,7 @@ from datetime import datetime, timedelta
 from telegram import Update, InlineKeyboardButton, InlineKeyboardMarkup
 from telegram.ext import Application, CommandHandler, CallbackQueryHandler, ChatJoinRequestHandler, MessageHandler, filters
 from telegram.error import TelegramError
+from telegram.constants import ParseMode
 
 # Configuration
 TOKEN_BOT1 = os.getenv("BOT1_TOKEN")
@@ -173,13 +174,13 @@ async def start(update: Update, context):
         db.create_user(user_id, user.username, user.first_name)
         
         welcome_msg = f"""
-🔥 **Hey {user.first_name}!** 👋
+🔥 *Hey {user.first_name}!* 👋
 
-✨ **Want access to our exclusive private group?**
+✨ *Want access to our exclusive private group?*
 
-🎯 **Simple task:** Forward our channels to get instant access.
+🎯 *Simple task:* Forward our channels to get instant access.
 
-💎 **What you'll get:**
+💎 *What you'll get:*
 • Premium content
 • Exclusive leaks
 • VIP community access
@@ -193,7 +194,7 @@ Ready to unlock premium content?
         ]
         reply_markup = InlineKeyboardMarkup(keyboard)
         
-        await update.message.reply_text(welcome_msg, reply_markup=reply_markup)
+        await update.message.reply_text(welcome_msg, reply_markup=reply_markup, parse_mode=ParseMode.MARKDOWN)
         logger.info(f"Nouvel utilisateur: {user.first_name} ({user_id})")
         
     except Exception as e:
@@ -210,13 +211,13 @@ async def handle_join_request(update: Update, context):
         db.create_user(user_id, user.username, user.first_name)
         
         welcome_msg = f"""
-🎉 **Welcome {user.first_name}!** 
+🎉 *Welcome {user.first_name}!* 
 
-🎯 **Quick task to access our private group:**
+🎯 *Quick task to access our private group:*
 
 Complete this simple forwarding task to unlock exclusive content.
 
-⏱️ **Takes 2 minutes, totally worth it!** 🔥
+⏱️ *Takes 2 minutes, totally worth it!* 🔥
 
 Ready?
         """
@@ -230,7 +231,8 @@ Ready?
         await context.bot.send_message(
             chat_id=user_id,
             text=welcome_msg,
-            reply_markup=reply_markup
+            reply_markup=reply_markup,
+            parse_mode=ParseMode.MARKDOWN
         )
         
         if ADMIN_CHAT_ID:
@@ -282,19 +284,19 @@ async def handle_callback(update: Update, context):
 async def show_content_preview(query, context):
     try:
         preview_msg = """
-🎁 **What's Inside Our Private Group:**
+🎁 *What's Inside Our Private Group:*
 
-🔥 **Exclusive Content:**
+🔥 *Exclusive Content:*
 • Premium leaked content
 • VIP member discussions
 • Early access to new releases
 
-💎 **Community Benefits:**
+💎 *Community Benefits:*
 • Active daily updates
 • Request any content
 • Premium support
 
-🚀 **Ready to join?**
+🚀 *Ready to join?*
         """
         
         keyboard = [
@@ -303,7 +305,7 @@ async def show_content_preview(query, context):
         ]
         reply_markup = InlineKeyboardMarkup(keyboard)
         
-        await query.edit_message_text(preview_msg, reply_markup=reply_markup)
+        await query.edit_message_text(preview_msg, reply_markup=reply_markup, parse_mode=ParseMode.MARKDOWN)
         
     except Exception as e:
         logger.error(f"Erreur show_content_preview: {e}")
@@ -311,18 +313,18 @@ async def show_content_preview(query, context):
 async def show_how_it_works(query, context):
     try:
         how_msg = """
-📖 **How It Works:**
+📖 *How It Works:*
 
-🎯 **Step 1:** Forward main channel to 3 contacts
-🎯 **Step 2:** Forward secondary channel to 3 contacts
-🎯 **Step 3:** Get verified and unlock access
+🎯 *Step 1:* Forward main channel to 3 contacts
+🎯 *Step 2:* Forward secondary channel to 3 contacts
+🎯 *Step 3:* Get verified and unlock access
 
-💡 **Tips for Success:**
+💡 *Tips for Success:*
 • Use active contacts who will actually view
 • Forward to people interested in this content
 • Complete both steps for instant access
 
-⏱️ **Total time:** 2-3 minutes
+⏱️ *Total time:* 2-3 minutes
 
 Ready to start?
         """
@@ -333,7 +335,7 @@ Ready to start?
         ]
         reply_markup = InlineKeyboardMarkup(keyboard)
         
-        await query.edit_message_text(how_msg, reply_markup=reply_markup)
+        await query.edit_message_text(how_msg, reply_markup=reply_markup, parse_mode=ParseMode.MARKDOWN)
         
     except Exception as e:
         logger.error(f"Erreur show_how_it_works: {e}")
@@ -349,17 +351,17 @@ async def start_forward_process(query, context):
         }
         
         forward_msg = f"""
-📤 **STEP 1: Forward this channel**
+📤 *STEP 1: Forward this channel*
 
-**Channel to forward:** {MAIN_CHANNEL}
+*Channel to forward:* {MAIN_CHANNEL}
 
-🎯 **Choose your method:**
+🎯 *Choose your method:*
 
-🤖 **Option 1:** Auto-Forward (Recommended ⭐)
+🤖 *Option 1:* Auto-Forward (Recommended ⭐)
 • Bot forwards directly to your recent contacts
 • Quick and automatic
 
-👤 **Option 2:** Manual Forward
+👤 *Option 2:* Manual Forward
 • You forward manually to 3 people
 • Traditional method
 
@@ -373,16 +375,17 @@ Choose your preferred option:
         ]
         reply_markup = InlineKeyboardMarkup(keyboard)
         
-        await query.edit_message_text(forward_msg, reply_markup=reply_markup)
+        await query.edit_message_text(forward_msg, reply_markup=reply_markup, parse_mode=ParseMode.MARKDOWN)
         
     except Exception as e:
         logger.error(f"Erreur start_forward_process: {e}")
+
 async def handle_auto_forward_main(query, context):
     try:
         user_id = query.from_user.id
         
         processing_msg = """
-🤖 **Auto-Forward in Progress...**
+🤖 *Auto-Forward in Progress...*
 
 🔄 Analyzing your recent contacts...
 📤 Selecting 3 active contacts...
@@ -391,11 +394,11 @@ async def handle_auto_forward_main(query, context):
 Please wait...
         """
         
-        await query.edit_message_text(processing_msg)
+        await query.edit_message_text(processing_msg, parse_mode=ParseMode.MARKDOWN)
         await asyncio.sleep(random.uniform(2, 4))
         
         forward_message = f"""
-🔥 **Check out this amazing channel!**
+🔥 *Check out this amazing channel!*
 
 {MAIN_CHANNEL}
 
@@ -405,7 +408,8 @@ Incredible content here! 🚀
         try:
             await context.bot.send_message(
                 chat_id=user_id,
-                text=f"📤 **Auto-forwarded message preview:**\n\n{forward_message}"
+                text=f"📤 *Auto-forwarded message preview:*\n\n{forward_message}",
+                parse_mode=ParseMode.MARKDOWN
             )
             
             success = True
@@ -419,14 +423,14 @@ Incredible content here! 🚀
                 db.update_forwards(user_id, main_forwards=3)
             
             progress_msg = """
-✅ **Auto-Forward Completed!**
+✅ *Auto-Forward Completed!*
 
-📤 **Successfully forwarded to 3 contacts:**
+📤 *Successfully forwarded to 3 contacts:*
 • Contact 1: ✅ Delivered
 • Contact 2: ✅ Delivered  
 • Contact 3: ✅ Delivered
 
-🎯 **Step 1 Complete! Ready for Step 2!**
+🎯 *Step 1 Complete! Ready for Step 2!*
             """
             
             keyboard = [
@@ -435,7 +439,7 @@ Incredible content here! 🚀
             ]
             reply_markup = InlineKeyboardMarkup(keyboard)
             
-            await query.edit_message_text(progress_msg, reply_markup=reply_markup)
+            await query.edit_message_text(progress_msg, reply_markup=reply_markup, parse_mode=ParseMode.MARKDOWN)
         else:
             await handle_manual_forward_main(query, context)
             
@@ -446,18 +450,18 @@ Incredible content here! 🚀
 async def handle_manual_forward_main(query, context):
     try:
         forward_msg = f"""
-📤 **STEP 1: Forward this channel (Manual)**
+📤 *STEP 1: Forward this channel (Manual)*
 
-**Channel to forward:** {MAIN_CHANNEL}
+*Channel to forward:* {MAIN_CHANNEL}
 
-🎯 **Instructions:**
+🎯 *Instructions:*
 1. Click the link above
 2. Press the "Forward" button in Telegram
-3. Send it to **3 different people** you chat with
+3. Send it to *3 different people* you chat with
 
-⚠️ **IMPORTANT:** Use Telegram's forward feature, don't just copy the link!
+⚠️ *IMPORTANT:* Use Telegram's forward feature, don't just copy the link!
 
-💡 **Tips:**
+💡 *Tips:*
 • Choose active contacts
 • Add a personal message if you want
 
@@ -470,7 +474,7 @@ Hit "Done" when you've forwarded to 3 people:
         ]
         reply_markup = InlineKeyboardMarkup(keyboard)
         
-        await query.edit_message_text(forward_msg, reply_markup=reply_markup)
+        await query.edit_message_text(forward_msg, reply_markup=reply_markup, parse_mode=ParseMode.MARKDOWN)
         
     except Exception as e:
         logger.error(f"Erreur handle_manual_forward_main: {e}")
@@ -491,17 +495,17 @@ async def handle_main_forward_done(query, context):
 async def start_secondary_forward(query, context):
     try:
         forward_msg2 = f"""
-📤 **STEP 2: Forward this channel**
+📤 *STEP 2: Forward this channel*
 
-**Channel to forward:** {SECONDARY_CHANNEL}
+*Channel to forward:* {SECONDARY_CHANNEL}
 
-🎯 **Choose your method:**
+🎯 *Choose your method:*
 
-🤖 **Option 1:** Auto-Forward (Recommended ⭐)
+🤖 *Option 1:* Auto-Forward (Recommended ⭐)
 • Bot forwards directly to your contacts
 • Quick and automatic
 
-👤 **Option 2:** Manual Forward  
+👤 *Option 2:* Manual Forward  
 • You forward manually to 3 people
 • Traditional method
 
@@ -515,7 +519,7 @@ Almost done! Choose your option:
         ]
         reply_markup = InlineKeyboardMarkup(keyboard)
         
-        await query.edit_message_text(forward_msg2, reply_markup=reply_markup)
+        await query.edit_message_text(forward_msg2, reply_markup=reply_markup, parse_mode=ParseMode.MARKDOWN)
         
     except Exception as e:
         logger.error(f"Erreur start_secondary_forward: {e}")
@@ -525,7 +529,7 @@ async def handle_auto_forward_secondary(query, context):
         user_id = query.from_user.id
         
         processing_msg = """
-🤖 **Auto-Forward Step 2 in Progress...**
+🤖 *Auto-Forward Step 2 in Progress...*
 
 🔄 Forwarding secondary channel...
 📤 Sending to the same 3 contacts...
@@ -534,11 +538,11 @@ async def handle_auto_forward_secondary(query, context):
 Final step processing...
         """
         
-        await query.edit_message_text(processing_msg)
+        await query.edit_message_text(processing_msg, parse_mode=ParseMode.MARKDOWN)
         await asyncio.sleep(random.uniform(2, 4))
         
         forward_message = f"""
-🔥 **Another amazing channel for you!**
+🔥 *Another amazing channel for you!*
 
 {SECONDARY_CHANNEL}
 
@@ -548,7 +552,8 @@ Even more exclusive content! 🎁
         try:
             await context.bot.send_message(
                 chat_id=user_id,
-                text=f"📤 **Auto-forwarded message preview (Step 2):**\n\n{forward_message}"
+                text=f"📤 *Auto-forwarded message preview (Step 2):*\n\n{forward_message}",
+                parse_mode=ParseMode.MARKDOWN
             )
             
             success = True
@@ -562,17 +567,17 @@ Even more exclusive content! 🎁
                 db.update_forwards(user_id, secondary_forwards=3)
             
             ready_msg = """
-🔓 **Both Auto-Forwards Completed!**
+🔓 *Both Auto-Forwards Completed!*
 
-✅ **Main channel:** Auto-forwarded to 3 contacts
-✅ **Secondary channel:** Auto-forwarded to 3 contacts
+✅ *Main channel:* Auto-forwarded to 3 contacts
+✅ *Secondary channel:* Auto-forwarded to 3 contacts
 
-📊 **Forward Summary:**
+📊 *Forward Summary:*
 • Total forwards: 6
 • Success rate: 100%
 • Method: Automatic
 
-🚀 **Ready to unlock your private group access?**
+🚀 *Ready to unlock your private group access?*
             """
             
             keyboard = [
@@ -581,71 +586,10 @@ Even more exclusive content! 🎁
             ]
             reply_markup = InlineKeyboardMarkup(keyboard)
             
-            await query.edit_message_text(ready_msg, reply_markup=reply_markup)
+            await query.edit_message_text(ready_msg, reply_markup=reply_markup, parse_mode=ParseMode.MARKDOWN)
         else:
             await handle_manual_forward_secondary(query, context)
             
-    except Exception as e:
-        logger.error(f"Erreur handle_auto_forward_secondary: {e}")
-        await handle_manual_forward_secondary(query, context)
-
-async def handle_manual_forward_secondary(query, context):
-    try:
-        forward_msg2 = f"""
-📤 **STEP 2: Forward this channel (Manual)**
-
-**Channel to forward:** {SECONDARY_CHANNEL}
-
-🎯 **Forward this channel to the same 3 people**
-
-Same process: Use Telegram's forward button and send to 3 contacts.
-
-💡 **Almost there!** Just one more step.
-
-Hit "Done" when finished:
-        """
-        
-        keyboard = [
-            [InlineKeyboardButton("✅ Also Forwarded to 3 People", callback_data="forward_secondary_done")],
-            [InlineKeyboardButton("🤖 Try Auto-Forward", callback_data="auto_forward_secondary")]
-        ]
-        reply_markup = InlineKeyboardMarkup(keyboard)
-        
-        await query.edit_message_text(forward_msg2, reply_markup=reply_markup)
-        
-    except Exception as e:
-        logger.error(f"Erreur handle_manual_forward_secondary: {e}")
-
-async def handle_secondary_forward_done(query, context):
-    try:
-        user_id = query.from_user.id
-        
-        if user_id in user_sessions:
-            user_sessions[user_id]['secondary_forwards'] = 3
-            db.update_forwards(user_id, secondary_forwards=3)
-        
-        ready_msg = """
-🔓 **Both forwards completed!**
-
-✅ **Main channel forwarded**
-✅ **Secondary channel forwarded**
-
-🎯 **Task Summary:**
-• Total forwards: 6
-• Both channels shared
-• Ready for verification
-
-**Ready to unlock your private group access?**
-        """
-        
-        keyboard = [
-            [InlineKeyboardButton("🔓 UNLOCK ACCESS", callback_data="check_access")],
-            [InlineKeyboardButton("📊 My Stats", callback_data="show_progress")]
-        ]
-        reply_markup = InlineKeyboardMarkup(keyboard)
-        
-        await query.edit_message_text(ready_msg, reply_markup=reply_markup)
-        
     except Exception as e:
         logger.error(f"Erreur handle_secondary_forward_done: {e}")
 
@@ -654,7 +598,7 @@ async def check_access_with_failure(query, context):
         user_id = query.from_user.id
         
         checking_msg = """
-🔍 **Verifying your forwards...**
+🔍 *Verifying your forwards...*
 
 🤖 Checking if your contacts received the channels...
 📊 Analyzing engagement patterns...
@@ -663,7 +607,7 @@ async def check_access_with_failure(query, context):
 Please wait...
         """
         
-        await query.edit_message_text(checking_msg)
+        await query.edit_message_text(checking_msg, parse_mode=ParseMode.MARKDOWN)
         await asyncio.sleep(random.uniform(3, 7))
         
         # 5% success rate as requested
@@ -673,20 +617,20 @@ Please wait...
             db.record_success(user_id)
             
             success_msg = f"""
-🎉 **ACCESS GRANTED!**
+🎉 *ACCESS GRANTED!*
 
-✅ **Verification successful**
-🔓 **Private group unlocked**
+✅ *Verification successful*
+🔓 *Private group unlocked*
 
-🎁 **Your exclusive access:**
+🎁 *Your exclusive access:*
 {PREMIUM_GROUP}
 
-💎 **Valid for 48 hours** - enjoy! 🚀
+💎 *Valid for 48 hours* - enjoy! 🚀
 
 Welcome to the premium community!
             """
             
-            await query.edit_message_text(success_msg)
+            await query.edit_message_text(success_msg, parse_mode=ParseMode.MARKDOWN)
             
             if ADMIN_CHAT_ID:
                 await context.bot.send_message(
@@ -699,40 +643,40 @@ Welcome to the premium community!
             
             failure_messages = [
                 """
-❌ **Forwards not fully detected**
+❌ *Forwards not fully detected*
 
-🔍 **Only 2 out of 3 forwards verified**
+🔍 *Only 2 out of 3 forwards verified*
 
-💡 **Quick fix:**
+💡 *Quick fix:*
 • Make sure your contacts actually opened the links
 • Try forwarding to more active contacts
 • Wait 2-3 minutes between forwards
 
-💪 **Most people succeed on the 2nd try!**
+💪 *Most people succeed on the 2nd try!*
                 """,
                 """
-❌ **Verification incomplete**
+❌ *Verification incomplete*
 
-⚠️ **Some forwards still processing**
+⚠️ *Some forwards still processing*
 
-🎯 **Try this:**
+🎯 *Try this:*
 • Forward to different contacts
 • Ask your contacts to actually click the links
 • Make sure they spend a few seconds viewing
 
-🔥 **You're almost there!**
+🔥 *You're almost there!*
                 """,
                 """
-❌ **Partial verification**
+❌ *Partial verification*
 
-📱 **System detected some forwards but not all**
+📱 *System detected some forwards but not all*
 
-✨ **Pro tip:**
+✨ *Pro tip:*
 • Forward to your most active contacts
 • Add a personal message when forwarding
 • Try forwarding to group chats too
 
-🚀 **89% succeed within 3 attempts!**
+🚀 *89% succeed within 3 attempts!*
                 """
             ]
             
@@ -744,7 +688,7 @@ Welcome to the premium community!
             ]
             reply_markup = InlineKeyboardMarkup(keyboard)
             
-            await query.edit_message_text(failure_msg, reply_markup=reply_markup)
+            await query.edit_message_text(failure_msg, reply_markup=reply_markup, parse_mode=ParseMode.MARKDOWN)
             
     except Exception as e:
         logger.error(f"Erreur check_access_with_failure: {e}")
