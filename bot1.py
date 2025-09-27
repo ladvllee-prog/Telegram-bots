@@ -32,8 +32,11 @@ except Exception:
 # -- end debug block --
 from datetime import datetime, timedelta
 from telegram import Update, InlineKeyboardButton, InlineKeyboardMarkup
-from telegram.ext import Application, CommandHandler, CallbackQueryHandler, ChatJoinRequestHandler, MessageHandler, filters
+from telegram.ext import Application, CommandHandler, CallbackQueryHandler, ChatJoinRequestHandler, MessageHandler, filters, Defaults
 from telegram.error import TelegramError
+
+# ✅ Ajoute ceci juste après les imports
+defaults = Defaults(parse_mode="Markdown")
 
 # Configuration
 TOKEN_BOT1 = os.getenv("BOT1_TOKEN")
