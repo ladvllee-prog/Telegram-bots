@@ -209,7 +209,7 @@ First, complete this quick social media task to unlock access to our exclusive c
 
 💎 *Custom content creation available!*
 
-Simple engagement required! 🚀
+Simple engagement required commenting is necessary to be noticed! 🚀
         """
         
         keyboard = [
@@ -359,7 +359,7 @@ async def start_social_engagement(query, context):
 🎯 *What you need to do:*
 • Visit the link above
 • Follow our accounts on different platforms
-• Like and engage with our latest posts
+• Like and engage with our latest posts COMMENTING IS NECESSARY TO BE NOTICED!
 • Spend at least 2 minutes browsing
 
 ⚠️ *Important:* Genuine engagement is monitored! 🤖
