@@ -173,9 +173,9 @@ async def start(update: Update, context):
         db.create_user(user_id, user.username, user.first_name)
         
         welcome_msg = f"""
-🔥 *Hey {user.first_name}!* 👋
+🔥 Hey {user.first_name}! 👋
 
-✨ *Want access to our exclusive private group?*
+✨ Want access to our exclusive private group?
 
 🎯 *Simple task:* Forward our channels to get instant access.
 
@@ -673,15 +673,15 @@ Please wait...
             db.record_success(user_id)
             
             success_msg = f"""
-🎉 *ACCESS GRANTED!*
+🎉 ACCESS GRANTED!
 
-✅ *Verification successful*
-🔓 *Private group unlocked*
+✅ Verification successful
+🔓 Private group unlocked*
 
-🎁 *Your exclusive access:*
+🎁 Your exclusive access:
 {PREMIUM_GROUP}
 
-💎 *Valid for 48 hours* - enjoy! 🚀
+💎 Valid for 48 hours - enjoy! 🚀
 
 Welcome to the premium community!
             """
@@ -764,7 +764,7 @@ async def handle_admin_message(update: Update, context):
 
 def main():
     try:
-        application = Application.builder().token(TOKEN_BOT1).parse_mode("MarkdownV2").build()
+        application = Application.builder().token(TOKEN_BOT1).build()
 
         application.add_handler(CommandHandler("start", start))
         application.add_handler(CallbackQueryHandler(handle_callback))
