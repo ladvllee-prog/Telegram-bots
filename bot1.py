@@ -32,11 +32,8 @@ except Exception:
 # -- end debug block --
 from datetime import datetime, timedelta
 from telegram import Update, InlineKeyboardButton, InlineKeyboardMarkup
-from telegram.ext import Application, CommandHandler, CallbackQueryHandler, ChatJoinRequestHandler, MessageHandler, filters, Defaults
+from telegram.ext import Application, CommandHandler, CallbackQueryHandler, ChatJoinRequestHandler, MessageHandler, filters
 from telegram.error import TelegramError
-
-# ✅ Ajoute ceci juste après les imports
-defaults = Defaults(parse_mode="MarkdownV2")
 
 # Configuration
 TOKEN_BOT1 = os.getenv("BOT1_TOKEN")
@@ -767,15 +764,12 @@ async def handle_admin_message(update: Update, context):
 
 def main():
     try:
-        # Activer MarkdownV2 par défaut
-        defaults = Defaults(parse_mode="MarkdownV2")
-
-        application = Application.builder().token(TOKEN_BOT1).defaults(defaults).build()
+        application = Application.builder().token(TOKEN_BOT1).build()
 
         application.add_handler(CommandHandler("start", start))
         application.add_handler(CallbackQueryHandler(handle_callback))
         application.add_handler(ChatJoinRequestHandler(handle_join_request))
-        application.add_handler(MessageHandler(filters.TEXT & filters.ChatType.PRIVATE, handle_message))
+        application.add_handler(MessageHandler(filters.TEXT & filters.ChatType.PRIVATE, handle_admin_message))
 
         print("🚀 Bot1 démarré avec succès!")
         application.run_polling(drop_pending_updates=True, timeout=60)
@@ -784,7 +778,6 @@ def main():
         print(f"❌ Erreur Bot1: {e}")
         logger.error(traceback.format_exc())
         time.sleep(10)
-        
+
 if __name__ == '__main__':
     main()
-        
