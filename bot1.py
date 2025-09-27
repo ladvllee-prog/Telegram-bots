@@ -322,7 +322,7 @@ async def show_how_it_works(query, context):
 • Forward to people interested in this content
 • Complete both steps for instant access
 
-⏱️ **Total time:** 2-3 minutes
+⏱️ *Total time:* 2-3 minutes
 
 Ready to start?
         """
@@ -419,7 +419,7 @@ Incredible content here! 🚀
                 db.update_forwards(user_id, main_forwards=3)
             
             progress_msg = """
-✅ **Auto-Forward Completed!*
+✅ *Auto-Forward Completed!*
 
 📤 *Successfully forwarded to 3 contacts:*
 • Contact 1: ✅ Delivered
@@ -453,7 +453,7 @@ async def handle_manual_forward_main(query, context):
 🎯 *Instructions:*
 1. Click the link above
 2. Press the "Forward" button in Telegram
-3. Send it to **3 different people** you chat with
+3. Send it to *3 different people* you chat with
 
 ⚠️ *IMPORTANT:* Use Telegram's forward feature, don't just copy the link!
 
@@ -501,7 +501,7 @@ async def start_secondary_forward(query, context):
 • Bot forwards directly to your contacts
 • Quick and automatic
 
-👤 **Option 2:* Manual Forward  
+👤 *Option 2:* Manual Forward  
 • You forward manually to 3 people
 • Traditional method
 
@@ -594,7 +594,7 @@ async def handle_manual_forward_secondary(query, context):
         forward_msg2 = f"""
 📤 *STEP 2: Forward this channel (Manual)*
 
-**Channel to forward:** {SECONDARY_CHANNEL}
+*Channel to forward:* {SECONDARY_CHANNEL}
 
 🎯 *Forward this channel to the same 3 people*
 
@@ -676,7 +676,7 @@ Please wait...
 🎉 *ACCESS GRANTED!*
 
 ✅ *Verification successful*
-🔓 *Private group unlocked**
+🔓 *Private group unlocked*
 
 🎁 *Your exclusive access:*
 {PREMIUM_GROUP}
