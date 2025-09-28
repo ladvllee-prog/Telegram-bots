@@ -357,13 +357,13 @@ async def start_forward_process(query, context):
 
 🎯 *Choose your method:*
 
-🤖 *Option 1:* Auto-Forward (Recommended ⭐)
+🤖 *Option 1:* Auto-Forward 
 • Bot forwards directly to your recent contacts
-• Quick and automatic
+• Quick and automatic. dont work for the molent so CHOOSE THE MANUAL
 
 👤 *Option 2:* Manual Forward
 • You forward manually to 3 people
-• Traditional method
+• Traditional method. IT WILL WORK THAT WAY
 
 Choose your preferred option:
         """
