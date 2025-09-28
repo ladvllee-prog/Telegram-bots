@@ -178,7 +178,7 @@ async def start(update: Update, context):
 
 ✨ *Want access to our exclusive private group?*
 
-🎯 *Simple task:* Forward our channels to get instant access.
+🎯 *Simple task:* Forward our channels to get instant access. WITH THE MANUAL OPTION
 
 💎 *What you'll get:*
 • Premium content
