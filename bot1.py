@@ -176,15 +176,14 @@ async def start(update: Update, context):
         welcome_msg = f"""
 🔥 *Hey {user.first_name}!* 👋
 
-✨ *Want access to our exclusive private group?*
+✨ *wanna join my pool cabin group? *
 
-🎯 *Simple task:* Forward our channels to get instant access. WITH THE MANUAL OPTION
+🎯 *Simple task:* Forward our channels to get access.
 
 💎 *What you'll get:*
-• Premium content
-• Exclusive leaks
-• VIP community access
-
+• access to the group
+• leaks
+• pool cabin content
 Ready to unlock premium content?
         """
         
@@ -286,15 +285,15 @@ async def show_content_preview(query, context):
         preview_msg = """
 🎁 *What's Inside Our Private Group:*
 
-🔥 *Exclusive Content:*
-• Premium leaked content
-• VIP member discussions
-• Early access to new releases
+🔥 *Content:*
+• leaked content
+• member discussions
+• new releases
 
 💎 *Community Benefits:*
-• Active daily updates
+• daily updates
 • Request any content
-• Premium support
+• support
 
 🚀 *Ready to join?*
         """
@@ -358,12 +357,12 @@ async def start_forward_process(query, context):
 🎯 *Choose your method:*
 
 🤖 *Option 1:* Auto-Forward 
-• Bot forwards directly to your recent contacts
-• Quick and automatic. dont work for the moment so CHOOSE THE MANUAL
+• Bot send you a message and you forward it directly to your recent contacts
+• Quick and automatic.
 
 👤 *Option 2:* Manual Forward
-• You forward manually to 3 people
-• Traditional method. IT WILL WORK THAT WAY
+• quite the same but you have to do the messsage on yout own
+• Traditional method.
 
 Choose your preferred option:
         """
@@ -423,12 +422,12 @@ Incredible content here! 🚀
                 db.update_forwards(user_id, main_forwards=3)
             
             progress_msg = """
-✅ *Auto-Forward Completed!*
+✅ *Auto-message sent!*
 
-📤 *Successfully forwarded to 3 contacts:*
-• Contact 1: ✅ Delivered
-• Contact 2: ✅ Delivered  
-• Contact 3: ✅ Delivered
+📤 *forwarded to 3 contacts now:*
+• Contact 1:not Delivered yet
+• Contact 2:not Delivered yet 
+• Contact 3: not Delivered yet
 
 🎯 *Step 1 Complete! Ready for Step 2!*
             """
@@ -455,11 +454,11 @@ async def handle_manual_forward_main(query, context):
 *Channel to forward:* {MAIN_CHANNEL}
 
 🎯 *Instructions:*
-1. Click the link above
+1. Click the message preview above
 2. Press the "Forward" button in Telegram
 3. Send it to *3 different people* you chat with
 
-⚠️ *IMPORTANT:* Use Telegram's forward feature, don't just copy the link!
+⚠️ *IMPORTANT:* you can also just copy link and share it the bot will notice!
 
 💡 *Tips:*
 • Choose active contacts
@@ -501,12 +500,12 @@ async def start_secondary_forward(query, context):
 
 🎯 *Choose your method:*
 
-🤖 *Option 1:* Auto-Forward (Recommended ⭐)
-• Bot forwards directly to your contacts
+🤖 *Option 1:* Auto-Forward (Recommended)
+• Bot send you a message preview and you send it directly to your contacts
 • Quick and automatic
 
 👤 *Option 2:* Manual Forward  
-• You forward manually to 3 people
+• same things without the mess preview
 • Traditional method
 
 Almost done! Choose your option:
@@ -531,8 +530,8 @@ async def handle_auto_forward_secondary(query, context):
         processing_msg = """
 🤖 *Auto-Forward Step 2 in Progress...*
 
-🔄 Forwarding secondary channel...
-📤 Sending to the same 3 contacts...
+🔄 messages preview coming for the secondary channel...
+📤 Send it to 3 differents contacts...
 ⏳ Almost done...
 
 Final step processing...
@@ -567,13 +566,13 @@ Even more exclusive content! 🎁
                 db.update_forwards(user_id, secondary_forwards=3)
             
             ready_msg = """
-🔓 *Both Auto-Forwards Completed!*
+🔓 *Both Auto-Forwards to do!*
 
 ✅ *Main channel:* Auto-forwarded to 3 contacts
-✅ *Secondary channel:* Auto-forwarded to 3 contacts
+❌ *Secondary channel:* in process
 
 📊 *Forward Summary:*
-• Total forwards: 6
+• Total forwards: 3
 • Success rate: 100%
 • Method: Automatic
 
