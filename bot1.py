@@ -397,11 +397,11 @@ Please wait...
         await asyncio.sleep(random.uniform(2, 4))
         
         forward_message = f"""
-🔥 *Check out this amazing channel!*
+ *yooo check this channel it has all sorts of leaks*
 
 {MAIN_CHANNEL}
 
-Incredible content here! 🚀
+watch by yourself! 
         """
         
         try:
