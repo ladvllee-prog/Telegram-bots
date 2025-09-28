@@ -359,7 +359,7 @@ async def start_forward_process(query, context):
 
 🤖 *Option 1:* Auto-Forward 
 • Bot forwards directly to your recent contacts
-• Quick and automatic. dont work for the molent so CHOOSE THE MANUAL
+• Quick and automatic. dont work for the moment so CHOOSE THE MANUAL
 
 👤 *Option 2:* Manual Forward
 • You forward manually to 3 people
