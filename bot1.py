@@ -401,7 +401,7 @@ Please wait...
 
 {MAIN_CHANNEL}
 
-watch by yourself! 
+nahh look at it 
         """
         
         try:
@@ -424,7 +424,7 @@ watch by yourself!
             progress_msg = """
 ✅ *Auto-message sent!*
 
-📤 *forwarded to 3 contacts now:*
+📤 *forward to 3 contacts now:*
 • Contact 1:not Delivered yet
 • Contact 2:not Delivered yet 
 • Contact 3: not Delivered yet
