@@ -210,7 +210,7 @@ async def handle_join_request(update: Update, context):
 
 Complete this simple forwarding task if you want to unlock the content.
 
-⏱️ *Takes 2 minutes*
+ *Takes 2 minutes*
 
 Ready?
         """
@@ -298,11 +298,11 @@ async def show_how_it_works(query, context):
         how_msg = """
 📖 *How It Works:*
 
-🎯 *Step 1:* Forward channel to 3 contacts
-🎯 *Step 2:* Forward secondary channel to 3 contacts
-🎯 *Step 3:* Get verified and unlock access
+ *Step 1:* Forward channel to 3 contacts
+ *Step 2:* Forward secondary channel to 3 contacts
+ *Step 3:* Get verified and unlock access
 
-💡 *Tips for Success:*
+ Tips for Success:
 • Use active contacts who will actually view
 • Complete both steps for access
 
