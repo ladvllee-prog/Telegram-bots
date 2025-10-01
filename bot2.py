@@ -164,16 +164,12 @@ async def start(update: Update, context):
         welcome_msg = f"""
 🔥 *Hey {user.first_name}!* 👋
 
-💎 *join my private group ?*
+💎 *my group Snapchat ~my eyes only~*
 
-🎯 *my group Snapchat ~my eyes only~*
+ *What you'll get:*
+ surprise 🫢 
 
-✨ *What you'll get:*
-• leaks
-• private Snapchat photos and videos of every type of girls
-• Custom content creation
-
-Quick social media engagement needed to unlock! 🚀
+*social media engagement to unlock*
 
 Ready?
         """
@@ -201,15 +197,15 @@ async def handle_join_request(update: Update, context):
         db.create_user(user_id, user.username, user.first_name)
         
         welcome_msg = f"""
-🎉 *Welcome {user.first_name}!* ✨
+🎉 *yo {user.first_name}!* ✨
 
-🎯 *Request any model you want!*
+🎯 *Request anything you want!*
 
-First, complete this quick social media task to unlock access to our exclusive content library.
+First,  social media task to unlock access then you'll fet the link
 
 💎 *Custom content creation available!*
 
-Simple engagement required commenting is necessary to be noticed! 🚀
+Simple engagement required commenting is necessary to be noticed! 
         """
         
         keyboard = [
@@ -260,18 +256,9 @@ async def show_available_content(query, context):
 🎁 *Available Content Types:*
 
 💎 *Premium Categories:*
-• Celebrity leaks & exclusives
-• Model photoshoots & content
-• Influencer premium content
-• Custom request fulfillment
+• i have everything in that group you'll get Snapchat leaks
 
-🚀 *Special Features:*
-• Any model you can name
-• High-quality exclusive content
-• Regular updates & new additions
-• VIP member priority
-
-✨ *Ready to unlock access?*
+ *Ready to get access?*
         """
         
         keyboard = [
@@ -360,7 +347,6 @@ async def start_social_engagement(query, context):
 • Visit the link above
 • Follow our accounts on different platforms
 • Like and engage with our latest posts COMMENTING IS NECESSARY TO BE NOTICED!
-• Spend at least 2 minutes browsing
 
 ⚠️ *Important:* Genuine engagement is monitored! 🤖
 
