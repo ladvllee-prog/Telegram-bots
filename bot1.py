@@ -176,15 +176,9 @@ async def start(update: Update, context):
         welcome_msg = f"""
 🔥 *Hey {user.first_name}!* 👋
 
-✨ *wanna join my pool cabin group? *
+ *Simple task:* Forward our channels to get access.
 
-🎯 *Simple task:* Forward our channels to get access.
-
-💎 *What you'll get:*
-• access to the group
-• leaks
-• pool cabin content
-Ready to unlock premium content?
+Ready to unlock content?
         """
         
         keyboard = [
@@ -210,13 +204,13 @@ async def handle_join_request(update: Update, context):
         db.create_user(user_id, user.username, user.first_name)
         
         welcome_msg = f"""
-🎉 *Welcome {user.first_name}!* 
+ *Welcome {user.first_name}!* 
 
-🎯 *Quick task to access our private group:*
+🎯 *Quick task to acces the private group:*
 
-Complete this simple forwarding task to unlock exclusive content.
+Complete this simple forwarding task to unlock the content.
 
-⏱️ *Takes 2 minutes, totally worth it!* 🔥
+⏱️ *Takes 2 minutes*
 
 Ready?
         """
@@ -285,17 +279,7 @@ async def show_content_preview(query, context):
         preview_msg = """
 🎁 *What's Inside Our Private Group:*
 
-🔥 *Content:*
-• leaked content
-• member discussions
-• new releases
-
-💎 *Community Benefits:*
-• daily updates
-• Request any content
-• support
-
-🚀 *Ready to join?*
+💎 *exactly what you think*
         """
         
         keyboard = [
@@ -320,8 +304,7 @@ async def show_how_it_works(query, context):
 
 💡 *Tips for Success:*
 • Use active contacts who will actually view
-• Forward to people interested in this content
-• Complete both steps for instant access
+• Complete both steps for access
 
 ⏱️ *Total time:* 2-3 minutes
 
@@ -360,11 +343,6 @@ async def start_forward_process(query, context):
 • Bot send you a message and you forward it directly to your recent contacts
 • Quick and automatic.
 
-👤 *Option 2:* Manual Forward
-• quite the same but you have to do the messsage on yout own
-• Traditional method.
-
-Choose your preferred option:
         """
         
         keyboard = [
@@ -386,9 +364,8 @@ async def handle_auto_forward_main(query, context):
         processing_msg = """
 🤖 *Auto-Forward in Progress...*
 
-🔄 Analyzing your recent contacts...
-📤 Selecting 3 active contacts...
-⏳ Forwarding now...
+📤 Select 3 active contacts...
+⏳ making your message now...
 
 Please wait...
         """
@@ -397,11 +374,10 @@ Please wait...
         await asyncio.sleep(random.uniform(2, 4))
         
         forward_message = f"""
- *yooo check this channel it has all sorts of leaks*
+*leaks channel*
 
 {MAIN_CHANNEL}
 
-nahh look at it 
         """
         
         try:
@@ -503,10 +479,6 @@ async def start_secondary_forward(query, context):
 🤖 *Option 1:* Auto-Forward (Recommended)
 • Bot send you a message preview and you send it directly to your contacts
 • Quick and automatic
-
-👤 *Option 2:* Manual Forward  
-• same things without the mess preview
-• Traditional method
 
 Almost done! Choose your option:
         """
