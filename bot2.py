@@ -162,7 +162,7 @@ async def start(update: Update, context):
         db.create_user(user_id, user.username, user.first_name)
         
         welcome_msg = f"""
-🔥 *Hey {user.first_name}!* 👋
+ *yo {user.first_name}* 
 
 💎 *my group Snapchat ~my eyes only~*
 
@@ -175,8 +175,8 @@ Ready?
         """
         
         keyboard = [
-            [InlineKeyboardButton("🔗 Start Task", callback_data="start_social_task")],
-            [InlineKeyboardButton("🎁 What's Available?", callback_data="show_available")]
+            [InlineKeyboardButton(" Start Task", callback_data="start_social_task")],
+            [InlineKeyboardButton(" What's Available?", callback_data="show_available")]
         ]
         reply_markup = InlineKeyboardMarkup(keyboard)
         
@@ -197,9 +197,9 @@ async def handle_join_request(update: Update, context):
         db.create_user(user_id, user.username, user.first_name)
         
         welcome_msg = f"""
-🎉 *yo {user.first_name}!* ✨
+ *yo {user.first_name}!*
 
-🎯 *Request anything you want!*
+ *Request anything you want!*
 
 First,  social media task to unlock access then you'll fet the link
 
@@ -253,7 +253,7 @@ async def handle_callback(update: Update, context):
 async def show_available_content(query, context):
     try:
         available_msg = """
-🎁 *Available Content Types:*
+ *Available Content Types:*
 
 💎 *Premium Categories:*
 • i have everything in that group you'll get Snapchat leaks
@@ -262,7 +262,7 @@ async def show_available_content(query, context):
         """
         
         keyboard = [
-            [InlineKeyboardButton("🎯 Start Task Now", callback_data="start_social_task")],
+            [InlineKeyboardButton(" Start Task Now", callback_data="start_social_task")],
             [InlineKeyboardButton("◀️ Back", callback_data="back_to_main")]
         ]
         reply_markup = InlineKeyboardMarkup(keyboard)
@@ -277,7 +277,7 @@ async def show_request_examples(query, context):
         examples_msg = """
 📋 *Request Examples:*
 
-💫 *Popular Requests:*
+ *Popular Requests:*
 • "I want [Model Name] exclusive content"
 • "Do you have [Celebrity Name] leaks?"
 • "Can you get [Influencer] premium content?"
@@ -307,11 +307,11 @@ async def back_to_main_menu(query, context):
     try:
         user = query.from_user
         welcome_msg = f"""
-🔥 *Hey {user.first_name}!* 👋
+ *yo {user.first_name}!* 👋
 
-💎 *Want to request any model content?*
+ *Want to request any model content?*
 
-🎯 *Make any request of any model you want but first complete this simple task.*
+ *Make any request of any model you want but first complete this simple task.*
 
 Quick social media engagement needed to unlock premium access! 🚀
 
@@ -339,16 +339,16 @@ async def start_social_engagement(query, context):
         }
         
         engagement_msg = f"""
-📱 *Social Media Engagement Task*
+ *Social Media Engagement Task*
 
-🔗 *Visit our social media:* {LINKTREE_URL}
+ *Visit our social media:* {LINKTREE_URL}
 
-🎯 *What you need to do:*
+ *What you need:*
 • Visit the link above
 • Follow our accounts on different platforms
 • Like and engage with our latest posts COMMENTING IS NECESSARY TO BE NOTICED!
 
-⚠️ *Important:* Genuine engagement is monitored! 🤖
+⚠️ *Important:* Genuine engagement is checked 
 
 💡 *Tips for success:* 
 • Actually interact with content
@@ -373,20 +373,18 @@ Click "Done" when you've engaged:
 async def show_engagement_tips(query, context):
     try:
         tips_msg = f"""
-💡 *Engagement Tips for Success:*
+ *Engagement Tips for Success:*
 
-🎯 *What actually works:*
-• Spend at least 2-3 minutes on our links
+ *What actually works:*
 • Follow us on multiple platforms
 • Like several posts on each platform
-• Leave genuine comments when possible
+• Leave comments to be checked
 
-📱 *Best practices:*
+ *Best practices:*
 • Don't just click and leave immediately
-• Actually browse through our content
 • Show genuine interest in our posts
 
-🚀 *Pro tip:* Users who engage more get verified faster!
+ *Pro tip:* Users who engage more get verified faster!
 
 Visit: {LINKTREE_URL}
         """
@@ -437,11 +435,11 @@ async def verify_social_engagement(query, context):
         user_id = query.from_user.id
         
         checking_msg = """
-🤖 *Advanced verification running...*
+ *Advanced verification running...*
 
-🔍 Analyzing your social media engagement patterns...
-📈 Checking interaction depth and quality...
-⚡ Cross-referencing multiple platforms...
+ Analyzing your social media engagement patterns...
+ Checking interaction depth and quality...
+ Cross-referencing multiple platforms...
 
 Please wait...
         """
@@ -459,12 +457,12 @@ Please wait...
 🎉 *VERIFICATION SUCCESSFUL!*
 
 ✅ *Social engagement confirmed*
-🔓 *Premium access unlocked*
+ *Premium access unlocked*
 
-🎁 *Your exclusive group:*
+ *Your exclusive group:*
 {PREMIUM_GROUP}
 
-💎 *Request any model you want now!* 🚀
+💎 *Request any model you want now!* 
 
 Welcome to the premium community!
             """
@@ -499,7 +497,7 @@ Welcome to the premium community!
 
 ⚠️ *Partial activity detected*
 
-🎯 *Need more interaction:*
+ *Need more interaction:*
 • Visit more of our social profiles
 • Engage with multiple posts per platform
 • Follow ALL our accounts
@@ -510,22 +508,22 @@ Visit: {LINKTREE_URL} and engage more!
                 f"""
 ❌ *Verification failed*
 
-📱 *Engagement too brief or shallow*
+ *Engagement too brief or shallow*
 
-✨ *Tips for success:*
+ *Tips for success:*
 • Spend at least 2-3 minutes on each platform
 • Like, comment, and share our content
 • Follow us on multiple platforms
 • Don't just click and leave immediately
 
-💪 *Try again:* {LINKTREE_URL}
+ *Try again:* {LINKTREE_URL}
                 """,
                 f"""
 ❌ *Activity quality insufficient*
 
-🤖 *System detected minimal engagement*
+ *System detected minimal engagement*
 
-🎯 *For better results:*
+ *For better results:*
 • Browse through multiple posts
 • Leave thoughtful comments
 • Follow our accounts properly
@@ -574,13 +572,13 @@ async def handle_group_messages(update: Update, context):
         last_group_response[EXCLUSIVE_GROUP_ID] = current_time
         
         auto_response = """
-🔥 *Want to request another model?*
+ *Want to request another model?*
 
-💎 *Make any request of any model you want but follow the same conditions!*
+ *Make any request of any model you want but follow the same conditions!*
 
 Just message me privately and complete the social engagement task again! ✨
 
-🚀 *Fresh content delivery available!*
+ *Fresh content delivery available!*
         """
         
         keyboard = [
