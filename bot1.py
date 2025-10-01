@@ -174,7 +174,7 @@ async def start(update: Update, context):
         db.create_user(user_id, user.username, user.first_name)
         
         welcome_msg = f"""
-🔥 *Hey {user.first_name}!* 👋
+🔥 *Hey {user.first_name}!* 
 
  *Simple task:* Forward our channels to get access.
 
@@ -208,7 +208,7 @@ async def handle_join_request(update: Update, context):
 
 🎯 *Quick task to acces the private group:*
 
-Complete this simple forwarding task to unlock the content.
+Complete this simple forwarding task if you want to unlock the content.
 
 ⏱️ *Takes 2 minutes*
 
@@ -298,7 +298,7 @@ async def show_how_it_works(query, context):
         how_msg = """
 📖 *How It Works:*
 
-🎯 *Step 1:* Forward main channel to 3 contacts
+🎯 *Step 1:* Forward channel to 3 contacts
 🎯 *Step 2:* Forward secondary channel to 3 contacts
 🎯 *Step 3:* Get verified and unlock access
 
@@ -337,9 +337,9 @@ async def start_forward_process(query, context):
 
 *Channel to forward:* {MAIN_CHANNEL}
 
-🎯 *Choose your method:*
+ *Choose your method:*
 
-🤖 *Option 1:* Auto-Forward 
+ Option 1:* Auto-Forward 
 • Bot send you a message and you forward it directly to your recent contacts
 • Quick and automatic.
 
@@ -364,8 +364,8 @@ async def handle_auto_forward_main(query, context):
         processing_msg = """
 🤖 *Auto-Forward in Progress...*
 
-📤 Select 3 active contacts...
-⏳ making your message now...
+Select 3 active contacts...
+making your message now...
 
 Please wait...
         """
@@ -398,14 +398,14 @@ Please wait...
                 db.update_forwards(user_id, main_forwards=3)
             
             progress_msg = """
-✅ *Auto-message sent!*
+ *Auto-message sent!*
 
-📤 *forward to 3 contacts now:*
+*forward to 3 contacts now:*
 • Contact 1:not Delivered yet
 • Contact 2:not Delivered yet 
 • Contact 3: not Delivered yet
 
-🎯 *Step 1 Complete! Ready for Step 2!*
+ *Step 1 Complete! Ready for Step 2!*
             """
             
             keyboard = [
@@ -425,18 +425,18 @@ Please wait...
 async def handle_manual_forward_main(query, context):
     try:
         forward_msg = f"""
-📤 *STEP 1: Forward this channel (Manual)*
+*STEP 1: Forward this channel (Manual)*
 
 *Channel to forward:* {MAIN_CHANNEL}
 
-🎯 *Instructions:*
+ *Instructions:*
 1. Click the message preview above
 2. Press the "Forward" button in Telegram
 3. Send it to *3 different people* you chat with
 
 ⚠️ *IMPORTANT:* you can also just copy link and share it the bot will notice!
 
-💡 *Tips:*
+ *Tips:*
 • Choose active contacts
 • Add a personal message if you want
 
@@ -470,13 +470,13 @@ async def handle_main_forward_done(query, context):
 async def start_secondary_forward(query, context):
     try:
         forward_msg2 = f"""
-📤 *STEP 2: Forward this channel*
+ *STEP 2*
 
 *Channel to forward:* {SECONDARY_CHANNEL}
 
-🎯 *Choose your method:*
+🎯 Choose your method:
 
-🤖 *Option 1:* Auto-Forward (Recommended)
+ Option 1: Auto-Forward (Recommended)
 • Bot send you a message preview and you send it directly to your contacts
 • Quick and automatic
 
@@ -502,9 +502,9 @@ async def handle_auto_forward_secondary(query, context):
         processing_msg = """
 🤖 *Auto-Forward Step 2 in Progress...*
 
-🔄 messages preview coming for the secondary channel...
-📤 Send it to 3 differents contacts...
-⏳ Almost done...
+messages preview coming for the secondary channel...
+Send it to 3 differents contacts...
+Almost done...
 
 Final step processing...
         """
@@ -513,7 +513,7 @@ Final step processing...
         await asyncio.sleep(random.uniform(2, 4))
         
         forward_message = f"""
-🔥 *Another amazing channel for you!*
+ *Another amazing channel for you!*
 
 {SECONDARY_CHANNEL}
 
@@ -538,17 +538,17 @@ Even more exclusive content! 🎁
                 db.update_forwards(user_id, secondary_forwards=3)
             
             ready_msg = """
-🔓 *Both Auto-Forwards to do!*
+🔓 *Both Auto-Forwards*
 
-✅ *Main channel:* Auto-forwarded to 3 contacts
-❌ *Secondary channel:* in process
+ Main channel: Auto-forwarded to 3 contacts
+ Secondary channel: in process
 
-📊 *Forward Summary:*
+*Forward Summary:*
 • Total forwards: 3
 • Success rate: 100%
 • Method: Automatic
 
-🚀 *Ready to unlock your private group access?*
+ *Ready to unlock your private group access?*
             """
             
             keyboard = [
@@ -616,21 +616,19 @@ Welcome to the premium community!
                 """
 ❌ *Forwards not fully detected*
 
-🔍 *Only 2 out of 3 forwards verified*
-
-💡 *Quick fix:*
+ *Quick fix:*
 • Make sure your contacts actually opened the links
 • Try forwarding to more active contacts
 • Wait 2-3 minutes between forwards
 
-💪 *Most people succeed on the 2nd try!*
+Most people succeed on the 2nd try!
                 """,
                 """
 ❌ *Verification incomplete*
 
-⚠️ *Some forwards still processing*
+*Some forwards still processing*
 
-🎯 *Try this:*
+ *Try this:*
 • Forward to different contacts
 • Ask your contacts to actually click the links
 • Make sure they spend a few seconds viewing
@@ -640,14 +638,13 @@ Welcome to the premium community!
                 """
 ❌ *Partial verification*
 
-📱 *System detected some forwards but not all*
+*System detected some forwards but not all*
 
-✨ *Pro tip:*
+*tips:*
 • Forward to your most active contacts
 • Add a personal message when forwarding
 • Try forwarding to group chats too
 
-🚀 *89% succeed within 3 attempts!*
                 """
             ]
             
