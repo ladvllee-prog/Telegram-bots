@@ -242,7 +242,7 @@ async def handle_callback(update: Update, context):
     try:
         query = update.callback_query
         user_id = query.from_user.id
-        await query.answer()
+        await query.answer("")
         
         if query.data == "start_forwards":
             await start_forward_process(query, context)
