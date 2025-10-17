@@ -326,11 +326,19 @@ async def start_forward_process(query, context):
     try:
         user_id = query.from_user.id
         
+        # Créer la session sans dépendre de la DB
         user_sessions[user_id] = {
             'main_forwards': 0,
             'secondary_forwards': 0,
-            'session_id': db.start_forward_session(user_id)
+            'session_id': None
         }
+        
+        # Essayer de créer en DB mais continuer même si ça échoue
+        try:
+            session_id = db.start_forward_session(user_id)
+            user_sessions[user_id]['session_id'] = session_id
+        except:
+            pass
         
         forward_msg = f"""
 📤 *STEP 1: Forward this channel*
