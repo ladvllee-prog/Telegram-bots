@@ -347,7 +347,7 @@ async def start_forward_process(query, context):
 
  *Choose your method:*
 
- Option 1:* Auto-Forward 
+ *Option 1:* Auto-Forward 
 • Bot send you a message and you forward it directly to your recent contacts
 • Quick and automatic.
 
